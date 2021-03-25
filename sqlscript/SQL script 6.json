@@ -1,0 +1,16 @@
+{
+	"name": "SQL script 6",
+	"properties": {
+		"content": {
+			"query": "SELECT \n\t\tYEAR(pickup_datetime),\n\t\tpassenger_count,\n\t\tCOUNT(*) AS cnt\nFROM  \n\tOPENROWSET(\n\t\tBULK 'https://hankyadlsv2.dfs.core.windows.net/amsterdam/TaxiData/TaxiData/part-00000-cef1404b-3f03-4496-a2a9-9e849189dde1-c000.snappy.parquet', \n\t\tFORMAT='PARQUET'\n\t) WITH (\n\t\tpickup_datetime DATETIME2, \n\t\tpassenger_count INT\n\t) AS nyc\nGROUP BY \n\tpassenger_count,\n\tYEAR(pickup_datetime)\nORDER BY\n\tYEAR(pickup_datetime),\n\tpassenger_count\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCREATE VIEW ext_2018\nAS\n\nSELECT\n    *\nFROM\n    OPENROWSET(\n        BULK 'https://hankyadlsv2.dfs.core.windows.net/amsterdam/TaxiData/TaxiData/*.parquet',\n        FORMAT='PARQUET'\n    ) AS [result]\n    WHERE Tpep_pickup_datetime BETWEEN CAST('12/31/2019' AS datetime) AND CAST('1/1/2021' AS datetime)\n\n",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"name": "master",
+				"type": "SqlOnDemand"
+			}
+		},
+		"type": "SqlQuery"
+	}
+}

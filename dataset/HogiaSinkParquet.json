@@ -1,0 +1,21 @@
+{
+	"name": "HogiaSinkParquet",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "HankyADLS",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"folderPath": "Hogia/PARQUET",
+				"fileSystem": "partners"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": []
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

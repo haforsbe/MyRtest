@@ -1,0 +1,16 @@
+{
+	"name": "C",
+	"properties": {
+		"content": {
+			"query": "CREATE EXTERNAL TABLE [dbo].[ExternalTable]\n(\n\t[VendorID]\n\t,[tpep_pickup_datetime]\n,[tpep_dropoff_datetime]\n,[passenger_count]\n,[trip_distance]\n,[RatecodeID]\n,[store_and_fwd_flag]\n,[PULocationID]\n,[DOLocationID]\n,[payment_type]\n,[fare_amount]\n,[extra]\n,[mta_tax]\n,[tip_amount]\n,[tolls_amount]\n,[improvement_surcharge]\n,[total_amount]\n,[congestion_surcharge]\n)\nWITH\n(\n\tLOCATION = '/folder/file',\n\tDATA_SOURCE = [DataSource1],\n\tFILE_FORMAT = [FileFormat1]\n)\n",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"name": "hankysqlpool1",
+				"type": "SqlPool"
+			}
+		},
+		"type": "SqlQuery"
+	}
+}

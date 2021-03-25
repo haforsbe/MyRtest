@@ -1,0 +1,16 @@
+{
+	"name": "SQL script 9",
+	"properties": {
+		"content": {
+			"query": "SELECT TOP 100 * \nFROM OPENROWSET('CosmosDB',\n                'Account=hankycosmos;Database=vehiclejourneysdomain;Key=5I1dKBnvbWDXOdCaeD9LMV6VcVF1Jx5be3qrdV9waBIbwgcO3Pa8lHkTlypL8re54ElmxN3VsOkONSVKKO2Qbw==',\n                [265581f3-17e5-4d58-bba1-a97b00dfcf96]) AS [265581f3-17e5-4d58-bba1-a97b00dfcf96]\n\n\n\nSELECT TOP 100 * \nFROM OPENROWSET('CosmosDB',\n                'Account=hankycosmos;Database=Hogia;Key=5I1dKBnvbWDXOdCaeD9LMV6VcVF1Jx5be3qrdV9waBIbwgcO3Pa8lHkTlypL8re54ElmxN3VsOkONSVKKO2Qbw==',\n                MonitoredVehicleJourneys) AS MonitoredVehicleJourneys",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"poolName": "Built-in",
+				"databaseName": "master"
+			}
+		},
+		"type": "SqlQuery"
+	}
+}

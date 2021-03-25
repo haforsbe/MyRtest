@@ -1,0 +1,19 @@
+{
+	"name": "JOIN_Openrowset",
+	"properties": {
+		"folder": {
+			"name": "Hogia"
+		},
+		"content": {
+			"query": "WITH rides AS\n(\n    SELECT TOP 100 * \n    FROM OPENROWSET('CosmosDB',\n                'Account=hankycosmos;Database=vehiclejourneysdomain;Key=5I1dKBnvbWDXOdCaeD9LMV6VcVF1Jx5be3qrdV9waBIbwgcO3Pa8lHkTlypL8re54ElmxN3VsOkONSVKKO2Qbw==',\n                [265581f3-17e5-4d58-bba1-a97b00dfcf96])\n                AS [MyRides]\n),\nMonitoredVehicleJourneys AS\n(\n    SELECT TOP 100 * \n    FROM OPENROWSET('CosmosDB',\n                'Account=hankycosmos;Database=Hogia;Key=5I1dKBnvbWDXOdCaeD9LMV6VcVF1Jx5be3qrdV9waBIbwgcO3Pa8lHkTlypL8re54ElmxN3VsOkONSVKKO2Qbw==',\n                MonitoredVehicleJourneys)\n                AS [MyMonitoredVehicleJourneys]\n                WHERE PartitionKey ='265581f3-17e5-4d58-bba1-a97b00dfcf96:9015012000800158:2021-02-11' \n               \n)\nSELECT\n*\nFROM rides r\nLEFT JOIN MonitoredVehicleJourneys MVJ on r.PartitionKey = MVJ.PartitionKey\n--ORDER BY current_day ASC",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"poolName": "Built-in",
+				"databaseName": "master"
+			}
+		},
+		"type": "SqlQuery"
+	}
+}

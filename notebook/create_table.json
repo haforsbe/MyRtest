@@ -1,0 +1,64 @@
+{
+	"name": "create_table",
+	"properties": {
+		"nbformat": 4,
+		"nbformat_minor": 2,
+		"bigDataPool": {
+			"referenceName": "testsparkpool",
+			"type": "BigDataPoolReference"
+		},
+		"sessionProperties": {
+			"driverMemory": "56g",
+			"driverCores": 8,
+			"executorMemory": "56g",
+			"executorCores": 8,
+			"numExecutors": 2,
+			"conf": {
+				"spark.dynamicAllocation.enabled": "false",
+				"spark.dynamicAllocation.minExecutors": "2",
+				"spark.dynamicAllocation.maxExecutors": "2"
+			}
+		},
+		"metadata": {
+			"saveOutput": true,
+			"kernelspec": {
+				"name": "synapse_pyspark",
+				"display_name": "Synapse PySpark"
+			},
+			"language_info": {
+				"name": "python"
+			},
+			"a365ComputeOptions": {
+				"id": "/subscriptions/50b4f404-928c-4278-87e8-784d04814a4c/resourceGroups/hankysynapsenewregion/providers/Microsoft.Synapse/workspaces/hankysynapsenewregion/bigDataPools/testsparkpool",
+				"name": "testsparkpool",
+				"type": "Spark",
+				"endpoint": "https://hankysynapsenewregion.dev.azuresynapse.net/livyApi/versions/2019-11-01-preview/sparkPools/testsparkpool",
+				"auth": {
+					"type": "AAD",
+					"authResource": "https://dev.azuresynapse.net"
+				},
+				"sparkVersion": "2.4",
+				"nodeCount": 10,
+				"cores": 8,
+				"memory": 56
+			}
+		},
+		"cells": [
+			{
+				"cell_type": "code",
+				"metadata": {
+					"microsoft": {
+						"language": "sparksql"
+					},
+					"collapsed": false
+				},
+				"source": [
+					"%%sql\r\n",
+					"DROP TABLE MyProducts"
+				],
+				"attachments": null,
+				"execution_count": 2
+			}
+		]
+	}
+}

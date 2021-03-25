@@ -1,0 +1,25 @@
+{
+	"name": "DestinationDataset_pvl",
+	"properties": {
+		"parameters": {
+			"cw_table": {
+				"type": "String"
+			}
+		},
+		"annotations": [],
+		"type": "SqlPoolTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "SalesLT",
+			"table": {
+				"value": "@dataset().cw_table",
+				"type": "Expression"
+			}
+		},
+		"sqlPool": {
+			"referenceName": "hankysqlpool1",
+			"type": "SqlPoolReference"
+		}
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

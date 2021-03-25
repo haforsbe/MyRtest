@@ -1,0 +1,16 @@
+{
+	"name": "SQL script 8",
+	"properties": {
+		"content": {
+			"query": "SELECT TOP 100 * \nFROM OPENROWSET('CosmosDB',\n                'Account=hankycosmos;Database=Hogia;Key=5I1dKBnvbWDXOdCaeD9LMV6VcVF1Jx5be3qrdV9waBIbwgcO3Pa8lHkTlypL8re54ElmxN3VsOkONSVKKO2Qbw==',\n                MonitoredVehicleJourneys) AS MonitoredVehicleJourneys",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"poolName": "Built-in",
+				"databaseName": "master"
+			}
+		},
+		"type": "SqlQuery"
+	}
+}

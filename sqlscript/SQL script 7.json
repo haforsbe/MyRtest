@@ -1,0 +1,16 @@
+{
+	"name": "SQL script 7",
+	"properties": {
+		"content": {
+			"query": "IF NOT EXISTS (SELECT * FROM sys.external_file_formats WHERE name = 'SynapseParquetFormat') \n\tCREATE EXTERNAL FILE FORMAT [SynapseParquetFormat] \n\tWITH ( FORMAT_TYPE = PARQUET)\nGO\n\nIF NOT EXISTS (SELECT * FROM sys.external_data_sources WHERE name = 'amsterdam_hankyadlsv2_dfs_core_windows_net') \n\tCREATE EXTERNAL DATA SOURCE [amsterdam_hankyadlsv2_dfs_core_windows_net] \n\tWITH (\n\t\tLOCATION = 'abfss://amsterdam@hankyadlsv2.dfs.core.windows.net', \n\t\tTYPE     = HADOOP \n\t)\nGO\n\nCREATE EXTERNAL TABLE ext_2020 (\n\t[VendorID] int,\n\t[tpep_pickup_datetime] datetime2(7),\n\t[tpep_dropoff_datetime] datetime2(7),\n\t[passenger_count] int,\n\t[trip_distance] numeric(10,2),\n\t[RatecodeID] int,\n\t[store_and_fwd_flag] varchar(8000),\n\t[PULocationID] int,\n\t[DOLocationID] int,\n\t[payment_type] int,\n\t[fare_amount] numeric(10,2),\n\t[extra] numeric(10,2),\n\t[mta_tax] numeric(10,2),\n\t[tip_amount] numeric(10,2),\n\t[tolls_amount] numeric(10,2),\n\t[improvement_surcharge] numeric(10,2),\n\t[total_amount] numeric(10,2),\n\t[congestion_surcharge] varchar(8000)\n\t)\n\tWITH (\n\tLOCATION = 'TaxiData/Refined_18/part-00000-cef1404b-3f03-4496-a2a9-9e849189dde1-c000.snappy.parquet',\n\tDATA_SOURCE = [amsterdam_hankyadlsv2_dfs_core_windows_net],\n\tFILE_FORMAT = [SynapseParquetFormat],\n\tREJECT_TYPE = VALUE,\n\tREJECT_VALUE = 0\n\t)\nGO\n\nSELECT TOP 100 * FROM ext_2020\nGO\n\n",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"name": "hankysqlpool1",
+				"type": "SqlPool"
+			}
+		},
+		"type": "SqlQuery"
+	}
+}
