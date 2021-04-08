@@ -1,0 +1,51 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"workspaceName": {
+			"value": "hankysynapsenewregion"
+		},
+		"AzureSqlDatabase1_connectionString": {
+			"value": ""
+		},
+		"CosmosDb1_connectionString": {
+			"value": ""
+		},
+		"HankyADLS_accountKey": {
+			"value": ""
+		},
+		"HankyAzureMLService_servicePrincipalKey": {
+			"value": ""
+		},
+		"Hogia2_connectionString": {
+			"value": ""
+		},
+		"hankysynapsenewregion-WorkspaceDefaultSqlServer_connectionString": {
+			"value": ""
+		},
+		"vehiclejourneysdomain_connectionString": {
+			"value": ""
+		},
+		"AzureKeyVault1_properties_typeProperties_baseUrl": {
+			"value": "https://HankyKV.vault.azure.net/"
+		},
+		"HankyADLS_properties_typeProperties_url": {
+			"value": "https://hankyadlsv2.dfs.core.windows.net"
+		},
+		"HankyAzureMLService_properties_typeProperties_subscriptionId": {
+			"value": "50b4f404-928c-4278-87e8-784d04814a4c"
+		},
+		"HankyAzureMLService_properties_typeProperties_resourceGroupName": {
+			"value": "Cognitive"
+		},
+		"HankyAzureMLService_properties_typeProperties_servicePrincipalId": {
+			"value": "619ee4dd-d5e9-42ff-be3b-e94f10697583"
+		},
+		"HankyAzureMLService_properties_typeProperties_tenant": {
+			"value": "72f988bf-86f1-41af-91ab-2d7cd011db47"
+		},
+		"hankysynapsenewregion-WorkspaceDefaultStorage_properties_typeProperties_url": {
+			"value": "https://hankysynapsenewregionadl.dfs.core.windows.net"
+		}
+	}
+}
