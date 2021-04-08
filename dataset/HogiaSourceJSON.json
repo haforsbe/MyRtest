@@ -78,10 +78,10 @@
 					"type": "string"
 				},
 				"AdvanceOrderCondition": {
-					"type": "null"
+					"type": "string"
 				},
 				"JourneyCreationParameters": {
-					"type": "null"
+					"type": "string"
 				},
 				"JourneyRef": {
 					"type": "object",
@@ -117,7 +117,9 @@
 				"ttl": {
 					"type": "integer"
 				},
-				"id": "{\r\n  \"type\": \"string\"\r\n}",
+				"id": {
+					"type": "string"
+				},
 				"Type": {
 					"type": "string"
 				},
@@ -135,8 +137,7 @@
 				},
 				"_ts": {
 					"type": "integer"
-				},
-				"type": "{\r\n  \"type\": \"string\"\r\n}"
+				}
 			}
 		}
 	},
