@@ -10,7 +10,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"folderPath": "Hogia/PARQUET/vehiclejourneysdomain/17de1786-0844-48db-bb67-a8e300e7a955",
+				"folderPath": "Hogia/PARQUET/vehiclejourneysdomain/265581f3-17e5-4d58-bba1-a97b00dfcf96",
 				"fileSystem": "partners"
 			},
 			"compressionCodec": "snappy"
