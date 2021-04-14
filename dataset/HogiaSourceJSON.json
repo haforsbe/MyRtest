@@ -11,7 +11,7 @@
 			"location": {
 				"type": "AzureBlobFSLocation",
 				"fileName": "documents_for_partiton_265581f3-17e5-4d58-bba1-a97b00dfcf9690150120008001582021-02-11.json",
-				"folderPath": "Hogia/JSON/monitoredvehiclejourneysdomain/MonitoredVehicleJourneys",
+				"folderPath": "Hogia/JSON/monitoredvehiclejourneysdomain/PassengerLoadForecasts",
 				"fileSystem": "partners"
 			}
 		},
