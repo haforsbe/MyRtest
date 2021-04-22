@@ -1,0 +1,2304 @@
+{
+	"name": "Notebook 10",
+	"properties": {
+		"nbformat": 4,
+		"nbformat_minor": 2,
+		"bigDataPool": {
+			"referenceName": "testsparkpool",
+			"type": "BigDataPoolReference"
+		},
+		"sessionProperties": {
+			"driverMemory": "56g",
+			"driverCores": 8,
+			"executorMemory": "56g",
+			"executorCores": 8,
+			"numExecutors": 2,
+			"conf": {
+				"spark.dynamicAllocation.enabled": "false",
+				"spark.dynamicAllocation.minExecutors": "2",
+				"spark.dynamicAllocation.maxExecutors": "2"
+			}
+		},
+		"metadata": {
+			"saveOutput": true,
+			"synapse_widget": {
+				"version": "0.1",
+				"state": {
+					"a6cec9e6-c1db-4a00-a154-ca05162f8fa9": {
+						"type": "Synapse.DataFrame",
+						"sync_state": {
+							"table": {
+								"rows": [
+									{
+										"OnboardCountForecasts": [
+											{
+												"JourneyPatternSequenceNumber": "3",
+												"OnboardCount": "1"
+											},
+											{
+												"JourneyPatternSequenceNumber": "4",
+												"OnboardCount": "2"
+											},
+											{
+												"JourneyPatternSequenceNumber": "5",
+												"OnboardCount": "3"
+											},
+											{
+												"JourneyPatternSequenceNumber": "6",
+												"OnboardCount": "4"
+											},
+											{
+												"JourneyPatternSequenceNumber": "7",
+												"OnboardCount": "5"
+											},
+											{
+												"JourneyPatternSequenceNumber": "8",
+												"OnboardCount": "6"
+											},
+											{
+												"JourneyPatternSequenceNumber": "9",
+												"OnboardCount": "6"
+											},
+											{
+												"JourneyPatternSequenceNumber": "10",
+												"OnboardCount": "6"
+											},
+											{
+												"JourneyPatternSequenceNumber": "11",
+												"OnboardCount": "5"
+											},
+											{
+												"JourneyPatternSequenceNumber": "12",
+												"OnboardCount": "4"
+											},
+											{
+												"JourneyPatternSequenceNumber": "13",
+												"OnboardCount": "4"
+											},
+											{
+												"JourneyPatternSequenceNumber": "14",
+												"OnboardCount": "4"
+											},
+											{
+												"JourneyPatternSequenceNumber": "15",
+												"OnboardCount": "3"
+											},
+											{
+												"JourneyPatternSequenceNumber": "16",
+												"OnboardCount": "2"
+											},
+											{
+												"JourneyPatternSequenceNumber": "17",
+												"OnboardCount": "1"
+											},
+											{
+												"JourneyPatternSequenceNumber": "18",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "19",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "20",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "21",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "22",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "23",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "24",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "25",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "26",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "27",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "28",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "29",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "30",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "31",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "32",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "33",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "34",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "35",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "36",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "37",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "38",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "39",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "40",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "41",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "42",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "43",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "44",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "45",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "46",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "47",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "48",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "49",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "50",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "51",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "52",
+												"OnboardCount": "0"
+											}
+										],
+										"_attachments": "attachments/",
+										"partitionKey": "265581f3-17e5-4d58-bba1-a97b00dfcf96:9015012000800158:2021-02-11",
+										"JourneyRef": {
+											"ObjectRef": "9015012000800158",
+											"OperatingDayDate": "2021-02-11T00:00:00+00:00"
+										},
+										"OrganizationId": "265581f3-17e5-4d58-bba1-a97b00dfcf96",
+										"id": "265581f3-17e5-4d58-bba1-a97b00dfcf96:9015012000800158:2021-02-11:2:forecast",
+										"_etag": "\"1f009c74-0000-0d00-0000-602525fd0000\"",
+										"_rid": "XXAwANnKJHPgqSIAAAAAAA==",
+										"_self": "dbs/XXAwAA==/colls/XXAwANnKJHM=/docs/XXAwANnKJHPgqSIAAAAAAA==/",
+										"ForecastedAtJourneyPatternSequenceNumber": "2",
+										"LastModifiedDateTime": "2021-02-11T12:41:33.3681193+00:00",
+										"Type": "Hogia.VehicleJourneyService.Domain.PassengerLoadForecastDocument",
+										"_ts": "1613047293"
+									},
+									{
+										"OnboardCountForecasts": [
+											{
+												"JourneyPatternSequenceNumber": "4",
+												"OnboardCount": "2"
+											},
+											{
+												"JourneyPatternSequenceNumber": "5",
+												"OnboardCount": "3"
+											},
+											{
+												"JourneyPatternSequenceNumber": "6",
+												"OnboardCount": "4"
+											},
+											{
+												"JourneyPatternSequenceNumber": "7",
+												"OnboardCount": "4"
+											},
+											{
+												"JourneyPatternSequenceNumber": "8",
+												"OnboardCount": "5"
+											},
+											{
+												"JourneyPatternSequenceNumber": "9",
+												"OnboardCount": "6"
+											},
+											{
+												"JourneyPatternSequenceNumber": "10",
+												"OnboardCount": "6"
+											},
+											{
+												"JourneyPatternSequenceNumber": "11",
+												"OnboardCount": "5"
+											},
+											{
+												"JourneyPatternSequenceNumber": "12",
+												"OnboardCount": "4"
+											},
+											{
+												"JourneyPatternSequenceNumber": "13",
+												"OnboardCount": "3"
+											},
+											{
+												"JourneyPatternSequenceNumber": "14",
+												"OnboardCount": "2"
+											},
+											{
+												"JourneyPatternSequenceNumber": "15",
+												"OnboardCount": "2"
+											},
+											{
+												"JourneyPatternSequenceNumber": "16",
+												"OnboardCount": "1"
+											},
+											{
+												"JourneyPatternSequenceNumber": "17",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "18",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "19",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "20",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "21",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "22",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "23",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "24",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "25",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "26",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "27",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "28",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "29",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "30",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "31",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "32",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "33",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "34",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "35",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "36",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "37",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "38",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "39",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "40",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "41",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "42",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "43",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "44",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "45",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "46",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "47",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "48",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "49",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "50",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "51",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "52",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "53",
+												"OnboardCount": "0"
+											}
+										],
+										"_attachments": "attachments/",
+										"partitionKey": "265581f3-17e5-4d58-bba1-a97b00dfcf96:9015012000800158:2021-02-11",
+										"JourneyRef": {
+											"ObjectRef": "9015012000800158",
+											"OperatingDayDate": "2021-02-11T00:00:00+00:00"
+										},
+										"OrganizationId": "265581f3-17e5-4d58-bba1-a97b00dfcf96",
+										"id": "265581f3-17e5-4d58-bba1-a97b00dfcf96:9015012000800158:2021-02-11:3:forecast",
+										"_etag": "\"1f00d5cb-0000-0d00-0000-602527520000\"",
+										"_rid": "XXAwANnKJHNwrSIAAAAAAA==",
+										"_self": "dbs/XXAwAA==/colls/XXAwANnKJHM=/docs/XXAwANnKJHNwrSIAAAAAAA==/",
+										"ForecastedAtJourneyPatternSequenceNumber": "3",
+										"LastModifiedDateTime": "2021-02-11T12:47:14.4130577+00:00",
+										"Type": "Hogia.VehicleJourneyService.Domain.PassengerLoadForecastDocument",
+										"_ts": "1613047634"
+									},
+									{
+										"OnboardCountForecasts": [
+											{
+												"JourneyPatternSequenceNumber": "5",
+												"OnboardCount": "5"
+											},
+											{
+												"JourneyPatternSequenceNumber": "6",
+												"OnboardCount": "6"
+											},
+											{
+												"JourneyPatternSequenceNumber": "7",
+												"OnboardCount": "8"
+											},
+											{
+												"JourneyPatternSequenceNumber": "8",
+												"OnboardCount": "9"
+											},
+											{
+												"JourneyPatternSequenceNumber": "9",
+												"OnboardCount": "10"
+											},
+											{
+												"JourneyPatternSequenceNumber": "10",
+												"OnboardCount": "10"
+											},
+											{
+												"JourneyPatternSequenceNumber": "11",
+												"OnboardCount": "9"
+											},
+											{
+												"JourneyPatternSequenceNumber": "12",
+												"OnboardCount": "9"
+											},
+											{
+												"JourneyPatternSequenceNumber": "13",
+												"OnboardCount": "7"
+											},
+											{
+												"JourneyPatternSequenceNumber": "14",
+												"OnboardCount": "6"
+											},
+											{
+												"JourneyPatternSequenceNumber": "15",
+												"OnboardCount": "4"
+											},
+											{
+												"JourneyPatternSequenceNumber": "16",
+												"OnboardCount": "4"
+											},
+											{
+												"JourneyPatternSequenceNumber": "17",
+												"OnboardCount": "1"
+											},
+											{
+												"JourneyPatternSequenceNumber": "18",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "19",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "20",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "21",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "22",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "23",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "24",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "25",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "26",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "27",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "28",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "29",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "30",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "31",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "32",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "33",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "34",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "35",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "36",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "37",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "38",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "39",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "40",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "41",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "42",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "43",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "44",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "45",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "46",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "47",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "48",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "49",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "50",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "51",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "52",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "53",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "54",
+												"OnboardCount": "0"
+											}
+										],
+										"_attachments": "attachments/",
+										"partitionKey": "265581f3-17e5-4d58-bba1-a97b00dfcf96:9015012000800158:2021-02-11",
+										"JourneyRef": {
+											"ObjectRef": "9015012000800158",
+											"OperatingDayDate": "2021-02-11T00:00:00+00:00"
+										},
+										"OrganizationId": "265581f3-17e5-4d58-bba1-a97b00dfcf96",
+										"id": "265581f3-17e5-4d58-bba1-a97b00dfcf96:9015012000800158:2021-02-11:4:forecast",
+										"_etag": "\"1f00a8f6-0000-0d00-0000-602527f20000\"",
+										"_rid": "XXAwANnKJHP7riIAAAAAAA==",
+										"_self": "dbs/XXAwAA==/colls/XXAwANnKJHM=/docs/XXAwANnKJHP7riIAAAAAAA==/",
+										"ForecastedAtJourneyPatternSequenceNumber": "4",
+										"LastModifiedDateTime": "2021-02-11T12:49:54.8984405+00:00",
+										"Type": "Hogia.VehicleJourneyService.Domain.PassengerLoadForecastDocument",
+										"_ts": "1613047794"
+									},
+									{
+										"OnboardCountForecasts": [
+											{
+												"JourneyPatternSequenceNumber": "6",
+												"OnboardCount": "2"
+											},
+											{
+												"JourneyPatternSequenceNumber": "7",
+												"OnboardCount": "5"
+											},
+											{
+												"JourneyPatternSequenceNumber": "8",
+												"OnboardCount": "5"
+											},
+											{
+												"JourneyPatternSequenceNumber": "9",
+												"OnboardCount": "5"
+											},
+											{
+												"JourneyPatternSequenceNumber": "10",
+												"OnboardCount": "5"
+											},
+											{
+												"JourneyPatternSequenceNumber": "11",
+												"OnboardCount": "5"
+											},
+											{
+												"JourneyPatternSequenceNumber": "12",
+												"OnboardCount": "5"
+											},
+											{
+												"JourneyPatternSequenceNumber": "13",
+												"OnboardCount": "4"
+											},
+											{
+												"JourneyPatternSequenceNumber": "14",
+												"OnboardCount": "4"
+											},
+											{
+												"JourneyPatternSequenceNumber": "15",
+												"OnboardCount": "3"
+											},
+											{
+												"JourneyPatternSequenceNumber": "16",
+												"OnboardCount": "3"
+											},
+											{
+												"JourneyPatternSequenceNumber": "17",
+												"OnboardCount": "2"
+											},
+											{
+												"JourneyPatternSequenceNumber": "18",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "19",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "20",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "21",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "22",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "23",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "24",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "25",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "26",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "27",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "28",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "29",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "30",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "31",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "32",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "33",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "34",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "35",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "36",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "37",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "38",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "39",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "40",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "41",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "42",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "43",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "44",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "45",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "46",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "47",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "48",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "49",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "50",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "51",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "52",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "53",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "54",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "55",
+												"OnboardCount": "0"
+											}
+										],
+										"_attachments": "attachments/",
+										"partitionKey": "265581f3-17e5-4d58-bba1-a97b00dfcf96:9015012000800158:2021-02-11",
+										"JourneyRef": {
+											"ObjectRef": "9015012000800158",
+											"OperatingDayDate": "2021-02-11T00:00:00+00:00"
+										},
+										"OrganizationId": "265581f3-17e5-4d58-bba1-a97b00dfcf96",
+										"id": "265581f3-17e5-4d58-bba1-a97b00dfcf96:9015012000800158:2021-02-11:5:forecast",
+										"_etag": "\"20008b0e-0000-0d00-0000-602528630000\"",
+										"_rid": "XXAwANnKJHMosCIAAAAAAA==",
+										"_self": "dbs/XXAwAA==/colls/XXAwANnKJHM=/docs/XXAwANnKJHMosCIAAAAAAA==/",
+										"ForecastedAtJourneyPatternSequenceNumber": "5",
+										"LastModifiedDateTime": "2021-02-11T12:51:47.0014689+00:00",
+										"Type": "Hogia.VehicleJourneyService.Domain.PassengerLoadForecastDocument",
+										"_ts": "1613047907"
+									},
+									{
+										"OnboardCountForecasts": [
+											{
+												"JourneyPatternSequenceNumber": "7",
+												"OnboardCount": "3"
+											},
+											{
+												"JourneyPatternSequenceNumber": "8",
+												"OnboardCount": "4"
+											},
+											{
+												"JourneyPatternSequenceNumber": "9",
+												"OnboardCount": "4"
+											},
+											{
+												"JourneyPatternSequenceNumber": "10",
+												"OnboardCount": "4"
+											},
+											{
+												"JourneyPatternSequenceNumber": "11",
+												"OnboardCount": "4"
+											},
+											{
+												"JourneyPatternSequenceNumber": "12",
+												"OnboardCount": "4"
+											},
+											{
+												"JourneyPatternSequenceNumber": "13",
+												"OnboardCount": "4"
+											},
+											{
+												"JourneyPatternSequenceNumber": "14",
+												"OnboardCount": "3"
+											},
+											{
+												"JourneyPatternSequenceNumber": "15",
+												"OnboardCount": "3"
+											},
+											{
+												"JourneyPatternSequenceNumber": "16",
+												"OnboardCount": "2"
+											},
+											{
+												"JourneyPatternSequenceNumber": "17",
+												"OnboardCount": "2"
+											},
+											{
+												"JourneyPatternSequenceNumber": "18",
+												"OnboardCount": "1"
+											},
+											{
+												"JourneyPatternSequenceNumber": "19",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "20",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "21",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "22",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "23",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "24",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "25",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "26",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "27",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "28",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "29",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "30",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "31",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "32",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "33",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "34",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "35",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "36",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "37",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "38",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "39",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "40",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "41",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "42",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "43",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "44",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "45",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "46",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "47",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "48",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "49",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "50",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "51",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "52",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "53",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "54",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "55",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "56",
+												"OnboardCount": "0"
+											}
+										],
+										"_attachments": "attachments/",
+										"partitionKey": "265581f3-17e5-4d58-bba1-a97b00dfcf96:9015012000800158:2021-02-11",
+										"JourneyRef": {
+											"ObjectRef": "9015012000800158",
+											"OperatingDayDate": "2021-02-11T00:00:00+00:00"
+										},
+										"OrganizationId": "265581f3-17e5-4d58-bba1-a97b00dfcf96",
+										"id": "265581f3-17e5-4d58-bba1-a97b00dfcf96:9015012000800158:2021-02-11:6:forecast",
+										"_etag": "\"2000a32b-0000-0d00-0000-602528d80000\"",
+										"_rid": "XXAwANnKJHN0sSIAAAAAAA==",
+										"_self": "dbs/XXAwAA==/colls/XXAwANnKJHM=/docs/XXAwANnKJHN0sSIAAAAAAA==/",
+										"ForecastedAtJourneyPatternSequenceNumber": "6",
+										"LastModifiedDateTime": "2021-02-11T12:53:44.7483336+00:00",
+										"Type": "Hogia.VehicleJourneyService.Domain.PassengerLoadForecastDocument",
+										"_ts": "1613048024"
+									},
+									{
+										"OnboardCountForecasts": [
+											{
+												"JourneyPatternSequenceNumber": "8",
+												"OnboardCount": "12"
+											},
+											{
+												"JourneyPatternSequenceNumber": "9",
+												"OnboardCount": "12"
+											},
+											{
+												"JourneyPatternSequenceNumber": "10",
+												"OnboardCount": "11"
+											},
+											{
+												"JourneyPatternSequenceNumber": "11",
+												"OnboardCount": "11"
+											},
+											{
+												"JourneyPatternSequenceNumber": "12",
+												"OnboardCount": "10"
+											},
+											{
+												"JourneyPatternSequenceNumber": "13",
+												"OnboardCount": "10"
+											},
+											{
+												"JourneyPatternSequenceNumber": "14",
+												"OnboardCount": "8"
+											},
+											{
+												"JourneyPatternSequenceNumber": "15",
+												"OnboardCount": "7"
+											},
+											{
+												"JourneyPatternSequenceNumber": "16",
+												"OnboardCount": "6"
+											},
+											{
+												"JourneyPatternSequenceNumber": "17",
+												"OnboardCount": "3"
+											},
+											{
+												"JourneyPatternSequenceNumber": "18",
+												"OnboardCount": "3"
+											},
+											{
+												"JourneyPatternSequenceNumber": "19",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "20",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "21",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "22",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "23",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "24",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "25",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "26",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "27",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "28",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "29",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "30",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "31",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "32",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "33",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "34",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "35",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "36",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "37",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "38",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "39",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "40",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "41",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "42",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "43",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "44",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "45",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "46",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "47",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "48",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "49",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "50",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "51",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "52",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "53",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "54",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "55",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "56",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "57",
+												"OnboardCount": "0"
+											}
+										],
+										"_attachments": "attachments/",
+										"partitionKey": "265581f3-17e5-4d58-bba1-a97b00dfcf96:9015012000800158:2021-02-11",
+										"JourneyRef": {
+											"ObjectRef": "9015012000800158",
+											"OperatingDayDate": "2021-02-11T00:00:00+00:00"
+										},
+										"OrganizationId": "265581f3-17e5-4d58-bba1-a97b00dfcf96",
+										"id": "265581f3-17e5-4d58-bba1-a97b00dfcf96:9015012000800158:2021-02-11:7:forecast",
+										"_etag": "\"2000965a-0000-0d00-0000-602529860000\"",
+										"_rid": "XXAwANnKJHNYsyIAAAAAAA==",
+										"_self": "dbs/XXAwAA==/colls/XXAwANnKJHM=/docs/XXAwANnKJHNYsyIAAAAAAA==/",
+										"ForecastedAtJourneyPatternSequenceNumber": "7",
+										"LastModifiedDateTime": "2021-02-11T12:56:38.8658845+00:00",
+										"Type": "Hogia.VehicleJourneyService.Domain.PassengerLoadForecastDocument",
+										"_ts": "1613048198"
+									},
+									{
+										"OnboardCountForecasts": [
+											{
+												"JourneyPatternSequenceNumber": "9",
+												"OnboardCount": "15"
+											},
+											{
+												"JourneyPatternSequenceNumber": "10",
+												"OnboardCount": "14"
+											},
+											{
+												"JourneyPatternSequenceNumber": "11",
+												"OnboardCount": "13"
+											},
+											{
+												"JourneyPatternSequenceNumber": "12",
+												"OnboardCount": "12"
+											},
+											{
+												"JourneyPatternSequenceNumber": "13",
+												"OnboardCount": "11"
+											},
+											{
+												"JourneyPatternSequenceNumber": "14",
+												"OnboardCount": "10"
+											},
+											{
+												"JourneyPatternSequenceNumber": "15",
+												"OnboardCount": "9"
+											},
+											{
+												"JourneyPatternSequenceNumber": "16",
+												"OnboardCount": "8"
+											},
+											{
+												"JourneyPatternSequenceNumber": "17",
+												"OnboardCount": "5"
+											},
+											{
+												"JourneyPatternSequenceNumber": "18",
+												"OnboardCount": "3"
+											},
+											{
+												"JourneyPatternSequenceNumber": "19",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "20",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "21",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "22",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "23",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "24",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "25",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "26",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "27",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "28",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "29",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "30",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "31",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "32",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "33",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "34",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "35",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "36",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "37",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "38",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "39",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "40",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "41",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "42",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "43",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "44",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "45",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "46",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "47",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "48",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "49",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "50",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "51",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "52",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "53",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "54",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "55",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "56",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "57",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "58",
+												"OnboardCount": "0"
+											}
+										],
+										"_attachments": "attachments/",
+										"partitionKey": "265581f3-17e5-4d58-bba1-a97b00dfcf96:9015012000800158:2021-02-11",
+										"JourneyRef": {
+											"ObjectRef": "9015012000800158",
+											"OperatingDayDate": "2021-02-11T00:00:00+00:00"
+										},
+										"OrganizationId": "265581f3-17e5-4d58-bba1-a97b00dfcf96",
+										"id": "265581f3-17e5-4d58-bba1-a97b00dfcf96:9015012000800158:2021-02-11:8:forecast",
+										"_etag": "\"2000bb73-0000-0d00-0000-602529e00000\"",
+										"_rid": "XXAwANnKJHMjtCIAAAAAAA==",
+										"_self": "dbs/XXAwAA==/colls/XXAwANnKJHM=/docs/XXAwANnKJHMjtCIAAAAAAA==/",
+										"ForecastedAtJourneyPatternSequenceNumber": "8",
+										"LastModifiedDateTime": "2021-02-11T12:58:08.0140814+00:00",
+										"Type": "Hogia.VehicleJourneyService.Domain.PassengerLoadForecastDocument",
+										"_ts": "1613048288"
+									},
+									{
+										"OnboardCountForecasts": [
+											{
+												"JourneyPatternSequenceNumber": "10",
+												"OnboardCount": "17"
+											},
+											{
+												"JourneyPatternSequenceNumber": "11",
+												"OnboardCount": "15"
+											},
+											{
+												"JourneyPatternSequenceNumber": "12",
+												"OnboardCount": "14"
+											},
+											{
+												"JourneyPatternSequenceNumber": "13",
+												"OnboardCount": "14"
+											},
+											{
+												"JourneyPatternSequenceNumber": "14",
+												"OnboardCount": "11"
+											},
+											{
+												"JourneyPatternSequenceNumber": "15",
+												"OnboardCount": "11"
+											},
+											{
+												"JourneyPatternSequenceNumber": "16",
+												"OnboardCount": "9"
+											},
+											{
+												"JourneyPatternSequenceNumber": "17",
+												"OnboardCount": "6"
+											},
+											{
+												"JourneyPatternSequenceNumber": "18",
+												"OnboardCount": "2"
+											},
+											{
+												"JourneyPatternSequenceNumber": "19",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "20",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "21",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "22",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "23",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "24",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "25",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "26",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "27",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "28",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "29",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "30",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "31",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "32",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "33",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "34",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "35",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "36",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "37",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "38",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "39",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "40",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "41",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "42",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "43",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "44",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "45",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "46",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "47",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "48",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "49",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "50",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "51",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "52",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "53",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "54",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "55",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "56",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "57",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "58",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "59",
+												"OnboardCount": "0"
+											}
+										],
+										"_attachments": "attachments/",
+										"partitionKey": "265581f3-17e5-4d58-bba1-a97b00dfcf96:9015012000800158:2021-02-11",
+										"JourneyRef": {
+											"ObjectRef": "9015012000800158",
+											"OperatingDayDate": "2021-02-11T00:00:00+00:00"
+										},
+										"OrganizationId": "265581f3-17e5-4d58-bba1-a97b00dfcf96",
+										"id": "265581f3-17e5-4d58-bba1-a97b00dfcf96:9015012000800158:2021-02-11:9:forecast",
+										"_etag": "\"2000d99d-0000-0d00-0000-60252a750000\"",
+										"_rid": "XXAwANnKJHN-tSIAAAAAAA==",
+										"_self": "dbs/XXAwAA==/colls/XXAwANnKJHM=/docs/XXAwANnKJHN-tSIAAAAAAA==/",
+										"ForecastedAtJourneyPatternSequenceNumber": "9",
+										"LastModifiedDateTime": "2021-02-11T13:00:37.321858+00:00",
+										"Type": "Hogia.VehicleJourneyService.Domain.PassengerLoadForecastDocument",
+										"_ts": "1613048437"
+									},
+									{
+										"OnboardCountForecasts": [
+											{
+												"JourneyPatternSequenceNumber": "11",
+												"OnboardCount": "14"
+											},
+											{
+												"JourneyPatternSequenceNumber": "12",
+												"OnboardCount": "13"
+											},
+											{
+												"JourneyPatternSequenceNumber": "13",
+												"OnboardCount": "13"
+											},
+											{
+												"JourneyPatternSequenceNumber": "14",
+												"OnboardCount": "11"
+											},
+											{
+												"JourneyPatternSequenceNumber": "15",
+												"OnboardCount": "9"
+											},
+											{
+												"JourneyPatternSequenceNumber": "16",
+												"OnboardCount": "9"
+											},
+											{
+												"JourneyPatternSequenceNumber": "17",
+												"OnboardCount": "7"
+											},
+											{
+												"JourneyPatternSequenceNumber": "18",
+												"OnboardCount": "4"
+											},
+											{
+												"JourneyPatternSequenceNumber": "19",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "20",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "21",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "22",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "23",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "24",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "25",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "26",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "27",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "28",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "29",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "30",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "31",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "32",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "33",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "34",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "35",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "36",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "37",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "38",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "39",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "40",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "41",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "42",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "43",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "44",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "45",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "46",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "47",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "48",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "49",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "50",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "51",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "52",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "53",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "54",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "55",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "56",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "57",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "58",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "59",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "60",
+												"OnboardCount": "0"
+											}
+										],
+										"_attachments": "attachments/",
+										"partitionKey": "265581f3-17e5-4d58-bba1-a97b00dfcf96:9015012000800158:2021-02-11",
+										"JourneyRef": {
+											"ObjectRef": "9015012000800158",
+											"OperatingDayDate": "2021-02-11T00:00:00+00:00"
+										},
+										"OrganizationId": "265581f3-17e5-4d58-bba1-a97b00dfcf96",
+										"id": "265581f3-17e5-4d58-bba1-a97b00dfcf96:9015012000800158:2021-02-11:10:forecast",
+										"_etag": "\"200021c0-0000-0d00-0000-60252af40000\"",
+										"_rid": "XXAwANnKJHPjtiIAAAAAAA==",
+										"_self": "dbs/XXAwAA==/colls/XXAwANnKJHM=/docs/XXAwANnKJHPjtiIAAAAAAA==/",
+										"ForecastedAtJourneyPatternSequenceNumber": "10",
+										"LastModifiedDateTime": "2021-02-11T13:02:44.5349381+00:00",
+										"Type": "Hogia.VehicleJourneyService.Domain.PassengerLoadForecastDocument",
+										"_ts": "1613048564"
+									},
+									{
+										"OnboardCountForecasts": [
+											{
+												"JourneyPatternSequenceNumber": "12",
+												"OnboardCount": "9"
+											},
+											{
+												"JourneyPatternSequenceNumber": "13",
+												"OnboardCount": "9"
+											},
+											{
+												"JourneyPatternSequenceNumber": "14",
+												"OnboardCount": "8"
+											},
+											{
+												"JourneyPatternSequenceNumber": "15",
+												"OnboardCount": "7"
+											},
+											{
+												"JourneyPatternSequenceNumber": "16",
+												"OnboardCount": "6"
+											},
+											{
+												"JourneyPatternSequenceNumber": "17",
+												"OnboardCount": "6"
+											},
+											{
+												"JourneyPatternSequenceNumber": "18",
+												"OnboardCount": "3"
+											},
+											{
+												"JourneyPatternSequenceNumber": "19",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "20",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "21",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "22",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "23",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "24",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "25",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "26",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "27",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "28",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "29",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "30",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "31",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "32",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "33",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "34",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "35",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "36",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "37",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "38",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "39",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "40",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "41",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "42",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "43",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "44",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "45",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "46",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "47",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "48",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "49",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "50",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "51",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "52",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "53",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "54",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "55",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "56",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "57",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "58",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "59",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "60",
+												"OnboardCount": "0"
+											},
+											{
+												"JourneyPatternSequenceNumber": "61",
+												"OnboardCount": "0"
+											}
+										],
+										"_attachments": "attachments/",
+										"partitionKey": "265581f3-17e5-4d58-bba1-a97b00dfcf96:9015012000800158:2021-02-11",
+										"JourneyRef": {
+											"ObjectRef": "9015012000800158",
+											"OperatingDayDate": "2021-02-11T00:00:00+00:00"
+										},
+										"OrganizationId": "265581f3-17e5-4d58-bba1-a97b00dfcf96",
+										"id": "265581f3-17e5-4d58-bba1-a97b00dfcf96:9015012000800158:2021-02-11:11:forecast",
+										"_etag": "\"2000b4e5-0000-0d00-0000-60252b7a0000\"",
+										"_rid": "XXAwANnKJHMauCIAAAAAAA==",
+										"_self": "dbs/XXAwAA==/colls/XXAwANnKJHM=/docs/XXAwANnKJHMauCIAAAAAAA==/",
+										"ForecastedAtJourneyPatternSequenceNumber": "11",
+										"LastModifiedDateTime": "2021-02-11T13:04:58.779913+00:00",
+										"Type": "Hogia.VehicleJourneyService.Domain.PassengerLoadForecastDocument",
+										"_ts": "1613048698"
+									}
+								],
+								"schema": {
+									"ForecastedAtJourneyPatternSequenceNumber": "string",
+									"OnboardCountForecasts": "ArrayType(StructType(StructField(JourneyPatternSequenceNumber,StringType,true), StructField(OnboardCount,StringType,true)),true)",
+									"OrganizationId": "string",
+									"JourneyRef": "StructType(StructField(ObjectRef,StringType,true), StructField(OperatingDayDate,StringType,true))",
+									"TimeStamps": "string",
+									"partitionKey": "string",
+									"LastModifiedDateTime": "string",
+									"id": "string",
+									"Type": "string",
+									"_rid": "string",
+									"_self": "string",
+									"_etag": "string",
+									"_attachments": "string",
+									"_ts": "string"
+								}
+							},
+							"isSummary": false,
+							"language": "scala"
+						},
+						"persist_state": {
+							"view": {
+								"type": "details",
+								"chartOptions": {
+									"chartType": "bar",
+									"aggregationType": "count",
+									"categoryFieldKeys": [
+										"ForecastedAtJourneyPatternSequenceNumber"
+									],
+									"seriesFieldKeys": [
+										"ForecastedAtJourneyPatternSequenceNumber"
+									],
+									"isStacked": false
+								}
+							}
+						}
+					}
+				}
+			},
+			"kernelspec": {
+				"name": "synapse_pyspark",
+				"display_name": "Synapse PySpark"
+			},
+			"language_info": {
+				"name": "python"
+			},
+			"a365ComputeOptions": {
+				"id": "/subscriptions/50b4f404-928c-4278-87e8-784d04814a4c/resourceGroups/hankysynapsenewregion/providers/Microsoft.Synapse/workspaces/hankysynapsenewregion/bigDataPools/testsparkpool",
+				"name": "testsparkpool",
+				"type": "Spark",
+				"endpoint": "https://hankysynapsenewregion.dev.azuresynapse.net/livyApi/versions/2019-11-01-preview/sparkPools/testsparkpool",
+				"auth": {
+					"type": "AAD",
+					"authResource": "https://dev.azuresynapse.net"
+				},
+				"sparkVersion": "2.4",
+				"nodeCount": 10,
+				"cores": 8,
+				"memory": 56,
+				"automaticScaleJobs": false
+			},
+			"sessionKeepAliveTimeout": 30
+		},
+		"cells": [
+			{
+				"cell_type": "code",
+				"metadata": {
+					"microsoft": {
+						"language": "python"
+					},
+					"collapsed": false
+				},
+				"source": [
+					"%%pyspark\r\n",
+					"df = spark.read.load('abfss://partners@hankyadlsv2.dfs.core.windows.net/Hogia/PARQUET/monitoredvehiclejourneysdomain/PassengerLoadForecasts/part-00000-13580b42-d52d-4966-a2c6-fed465c6c30a-c000.snappy.parquet', format='parquet')\r\n",
+					"display(df.limit(10))"
+				],
+				"execution_count": 1
+			}
+		]
+	}
+}
