@@ -18,69 +18,24 @@
 		"schema": {
 			"type": "object",
 			"properties": {
-				"Calls": {
+				"ForecastedAtJourneyPatternSequenceNumber": {
+					"type": "integer"
+				},
+				"OnboardCountForecasts": {
 					"type": "array",
 					"items": {
 						"type": "object",
 						"properties": {
-							"SequenceNumber": {
+							"JourneyPatternSequenceNumber": {
 								"type": "integer"
 							},
-							"JourneyPatternPointRef": {
-								"type": "string"
-							},
-							"IsTimingPoint": {
-								"type": "boolean"
-							},
-							"DepartureTimetabledEarliestDateTime": {
-								"type": "string"
-							},
-							"ArrivalTimetabledLatestDateTime": {
-								"type": "string"
+							"OnboardCount": {
+								"type": "integer"
 							}
 						}
 					}
 				},
-				"JourneyNumber": {
-					"type": "integer"
-				},
-				"OriginName": {
-					"type": "string"
-				},
-				"PrimaryDestinationName": {
-					"type": "string"
-				},
-				"SecondaryDestinationName": {
-					"type": "string"
-				},
-				"SecondaryDestinationType": {
-					"type": "integer"
-				},
-				"TransportMode": {
-					"type": "integer"
-				},
-				"ContractorOrganizationId": {
-					"type": "string"
-				},
-				"TimetabledStartDateTime": {
-					"type": "string"
-				},
-				"TimetabledEndDateTime": {
-					"type": "string"
-				},
-				"LineRef": {
-					"type": "string"
-				},
-				"DirectionOfLineRef": {
-					"type": "string"
-				},
-				"JourneyPatternRef": {
-					"type": "string"
-				},
-				"AdvanceOrderCondition": {
-					"type": "string"
-				},
-				"JourneyCreationParameters": {
+				"OrganizationId": {
 					"type": "string"
 				},
 				"JourneyRef": {
@@ -95,27 +50,13 @@
 					}
 				},
 				"TimeStamps": {
-					"type": "array",
-					"items": {
-						"type": "object",
-						"properties": {
-							"TimeStamp": {
-								"type": "string"
-							},
-							"Name": {
-								"type": "string"
-							}
-						}
-					}
+					"type": "null"
 				},
 				"partitionKey": {
 					"type": "string"
 				},
 				"LastModifiedDateTime": {
 					"type": "string"
-				},
-				"ttl": {
-					"type": "integer"
 				},
 				"id": {
 					"type": "string"
