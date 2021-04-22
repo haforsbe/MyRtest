@@ -2711,7 +2711,7 @@
 							"name": "Select1"
 						}
 					],
-					"script": "source(output(\n\t\tForecastedAtJourneyPatternSequenceNumber as string,\n\t\tOnboardCountForecasts as (JourneyPatternSequenceNumber as string, OnboardCount as string)[],\n\t\tOrganizationId as string,\n\t\tJourneyRef as (ObjectRef as string, OperatingDayDate as string),\n\t\tTimeStamps as string,\n\t\tpartitionKey as string,\n\t\tLastModifiedDateTime as string,\n\t\tid as string,\n\t\tType as string,\n\t\t{_rid} as string,\n\t\t{_self} as string,\n\t\t{_etag} as string,\n\t\t{_attachments} as string,\n\t\t{_ts} as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false,\n\tdocumentForm: 'arrayOfDocuments',\n\tpartitionBy('hash', 1)) ~> sourceJson\nsourceJson select(mapColumn(\n\t\tForecastedAtJourneyPatternSequenceNumber,\n\t\tOnboardCountForecasts,\n\t\tOrganizationId,\n\t\tJourneyRef,\n\t\tTimeStamps,\n\t\tpartitionKey,\n\t\tLastModifiedDateTime,\n\t\tid,\n\t\tType,\n\t\t{_rid},\n\t\t{_self},\n\t\t{_etag},\n\t\t{_attachments},\n\t\t{_ts}\n\t),\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> Select1\nSelect1 sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tformat: 'parquet',\n\ttruncate: true,\n\tmapColumn(\n\t\tForecastedAtJourneyPatternSequenceNumber,\n\t\tOnboardCountForecasts,\n\t\tOrganizationId,\n\t\tJourneyRef,\n\t\tTimeStamps,\n\t\tpartitionKey,\n\t\tLastModifiedDateTime,\n\t\tid,\n\t\tType,\n\t\t{_rid},\n\t\t{_self},\n\t\t{_etag},\n\t\t{_attachments},\n\t\t{_ts}\n\t),\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> sink1"
+					"script": "source(output(\n\t\tForecastedAtJourneyPatternSequenceNumber as string,\n\t\tOnboardCountForecasts as (JourneyPatternSequenceNumber as string, OnboardCount as string)[],\n\t\tOrganizationId as string,\n\t\tJourneyRef as (ObjectRef as string, OperatingDayDate as string),\n\t\tTimeStamps as string,\n\t\tpartitionKey as string,\n\t\tLastModifiedDateTime as string,\n\t\tid as string,\n\t\tType as string,\n\t\t{_rid} as string,\n\t\t{_self} as string,\n\t\t{_etag} as string,\n\t\t{_attachments} as string,\n\t\t{_ts} as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false,\n\tdocumentForm: 'arrayOfDocuments',\n\tpartitionBy('hash', 1)) ~> sourceJson\nsourceJson select(mapColumn(\n\t\tForecastedAtJourneyPatternSequenceNumber,\n\t\tOnboardCountForecasts,\n\t\tOrganizationId,\n\t\tTimeStamps,\n\t\tpartitionKey,\n\t\tLastModifiedDateTime,\n\t\tid,\n\t\tType,\n\t\t{_rid},\n\t\t{_self},\n\t\t{_etag},\n\t\t{_attachments},\n\t\t{_ts},\n\t\t{JourneyRef.ObjectRef} = JourneyRef.ObjectRef,\n\t\t{JourneyRef.OperatingDayDate} = JourneyRef.OperatingDayDate\n\t),\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> Select1\nSelect1 sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tformat: 'parquet',\n\ttruncate: true,\n\tmapColumn(\n\t\tForecastedAtJourneyPatternSequenceNumber,\n\t\tOnboardCountForecasts,\n\t\tOrganizationId,\n\t\tTimeStamps,\n\t\tpartitionKey,\n\t\tLastModifiedDateTime,\n\t\tid,\n\t\tType,\n\t\t{_rid},\n\t\t{_self},\n\t\t{_etag},\n\t\t{_attachments},\n\t\t{_ts},\n\t\tJourneyRef_ObjectRef = {JourneyRef.ObjectRef},\n\t\tJourneyRef_OperatingDayDate = {JourneyRef.OperatingDayDate}\n\t),\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> sink1"
 				}
 			},
 			"dependsOn": [
@@ -2955,6 +2955,80 @@
 						"attachments": null,
 						"outputs": [],
 						"execution_count": null
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('workspaceName'), '/Notebook 10')]",
+			"type": "Microsoft.Synapse/workspaces/notebooks",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"nbformat": 4,
+				"nbformat_minor": 2,
+				"bigDataPool": {
+					"referenceName": "testsparkpool",
+					"type": "BigDataPoolReference"
+				},
+				"sessionProperties": {
+					"driverMemory": "56g",
+					"driverCores": 8,
+					"executorMemory": "56g",
+					"executorCores": 8,
+					"numExecutors": 2,
+					"conf": {
+						"spark.dynamicAllocation.enabled": "false",
+						"spark.dynamicAllocation.minExecutors": "2",
+						"spark.dynamicAllocation.maxExecutors": "2"
+					}
+				},
+				"metadata": {
+					"saveOutput": true,
+					"synapse_widget": {
+						"version": "0.1",
+						"state": {}
+					},
+					"kernelspec": {
+						"name": "synapse_pyspark",
+						"display_name": "python"
+					},
+					"language_info": {
+						"name": "python"
+					},
+					"a365ComputeOptions": {
+						"id": "/subscriptions/50b4f404-928c-4278-87e8-784d04814a4c/resourceGroups/hankysynapsenewregion/providers/Microsoft.Synapse/workspaces/hankysynapsenewregion/bigDataPools/testsparkpool",
+						"name": "testsparkpool",
+						"type": "Spark",
+						"endpoint": "https://hankysynapsenewregion.dev.azuresynapse.net/livyApi/versions/2019-11-01-preview/sparkPools/testsparkpool",
+						"auth": {
+							"type": "AAD",
+							"authResource": "https://dev.azuresynapse.net"
+						},
+						"sparkVersion": "2.4",
+						"nodeCount": 10,
+						"cores": 8,
+						"memory": 56,
+						"automaticScaleJobs": false
+					},
+					"sessionKeepAliveTimeout": 30
+				},
+				"cells": [
+					{
+						"cell_type": "code",
+						"metadata": {
+							"microsoft": {
+								"language": "python"
+							},
+							"collapsed": false
+						},
+						"source": [
+							"%%pyspark\r\n",
+							"df = spark.read.load('abfss://partners@hankyadlsv2.dfs.core.windows.net/Hogia/PARQUET/monitoredvehiclejourneysdomain/PassengerLoadForecasts/part-00000-13580b42-d52d-4966-a2c6-fed465c6c30a-c000.snappy.parquet', format='parquet')\r\n",
+							"display(df.limit(10))"
+						],
+						"outputs": [],
+						"execution_count": 1
 					}
 				]
 			},
@@ -5084,12 +5158,11 @@
 				"metadata": {
 					"saveOutput": true,
 					"synapse_widget": {
-						"version": "0.1",
-						"state": {}
+						"version": "0.1"
 					},
 					"kernelspec": {
 						"name": "synapse_pyspark",
-						"display_name": "python"
+						"display_name": "Synapse PySpark"
 					},
 					"language_info": {
 						"name": "python"
@@ -5106,10 +5179,8 @@
 						"sparkVersion": "2.4",
 						"nodeCount": 10,
 						"cores": 8,
-						"memory": 56,
-						"automaticScaleJobs": false
-					},
-					"sessionKeepAliveTimeout": 30
+						"memory": 56
+					}
 				},
 				"cells": [
 					{
