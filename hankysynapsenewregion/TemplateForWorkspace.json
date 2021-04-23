@@ -1562,8 +1562,7 @@
 				"lastPublishTime": "2021-02-22T13:13:06Z"
 			},
 			"dependsOn": [
-				"[concat(variables('workspaceId'), '/dataflows/MonitoredVehicleJourneys')]",
-				"[concat(variables('workspaceId'), '/integrationRuntimes/AutoResolveIntegrationRuntime')]"
+				"[concat(variables('workspaceId'), '/dataflows/MonitoredVehicleJourneys')]"
 			]
 		},
 		{
@@ -2033,6 +2032,31 @@
 			]
 		},
 		{
+			"name": "[concat(parameters('workspaceName'), '/HogiaSinkMVD')]",
+			"type": "Microsoft.Synapse/workspaces/datasets",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "HankyADLS",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Parquet",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"folderPath": "Hogia/PARQUET/monitoredvehiclejourneysdomain/MonitoredVehicleJourneys",
+						"fileSystem": "partners"
+					},
+					"compressionCodec": "snappy"
+				},
+				"schema": []
+			},
+			"dependsOn": [
+				"[concat(variables('workspaceId'), '/linkedServices/HankyADLS')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('workspaceName'), '/HogiaSinkParquet')]",
 			"type": "Microsoft.Synapse/workspaces/datasets",
 			"apiVersion": "2019-06-01-preview",
@@ -2046,7 +2070,7 @@
 				"typeProperties": {
 					"location": {
 						"type": "AzureBlobFSLocation",
-						"folderPath": "Hogia/PARQUET/monitoredvehiclejourneysdomain/PassengerLoadForecasts",
+						"folderPath": "Hogia/PARQUET/monitoredvehiclejourneysdomain/MonitoredVehicleJourneys",
 						"fileSystem": "partners"
 					},
 					"compressionCodec": "snappy"
@@ -2059,6 +2083,96 @@
 		},
 		{
 			"name": "[concat(parameters('workspaceName'), '/HogiaSourceJSON')]",
+			"type": "Microsoft.Synapse/workspaces/datasets",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "HankyADLS",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Json",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileName": "documents_for_partiton_265581f3-17e5-4d58-bba1-a97b00dfcf9690150120008001582021-02-11.json",
+						"folderPath": "Hogia/JSON/monitoredvehiclejourneysdomain/PassengerLoadForecasts",
+						"fileSystem": "partners"
+					}
+				},
+				"schema": {
+					"type": "object",
+					"properties": {
+						"ForecastedAtJourneyPatternSequenceNumber": {
+							"type": "integer"
+						},
+						"OnboardCountForecasts": {
+							"type": "array",
+							"items": {
+								"type": "object",
+								"properties": {
+									"JourneyPatternSequenceNumber": {
+										"type": "integer"
+									},
+									"OnboardCount": {
+										"type": "integer"
+									}
+								}
+							}
+						},
+						"OrganizationId": {
+							"type": "string"
+						},
+						"JourneyRef": {
+							"type": "object",
+							"properties": {
+								"ObjectRef": {
+									"type": "string"
+								},
+								"OperatingDayDate": {
+									"type": "string"
+								}
+							}
+						},
+						"TimeStamps": {
+							"type": "null"
+						},
+						"partitionKey": {
+							"type": "string"
+						},
+						"LastModifiedDateTime": {
+							"type": "string"
+						},
+						"id": {
+							"type": "string"
+						},
+						"Type": {
+							"type": "string"
+						},
+						"_rid": {
+							"type": "string"
+						},
+						"_self": {
+							"type": "string"
+						},
+						"_etag": {
+							"type": "string"
+						},
+						"_attachments": {
+							"type": "string"
+						},
+						"_ts": {
+							"type": "integer"
+						}
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('workspaceId'), '/linkedServices/HankyADLS')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('workspaceName'), '/HogiaSourceMVD')]",
 			"type": "Microsoft.Synapse/workspaces/datasets",
 			"apiVersion": "2019-06-01-preview",
 			"properties": {
@@ -2467,7 +2581,7 @@
 					"sources": [
 						{
 							"dataset": {
-								"referenceName": "HogiaSourceJSON",
+								"referenceName": "HogiaSourceMVD",
 								"type": "DatasetReference"
 							},
 							"name": "sourceJson"
@@ -2476,23 +2590,19 @@
 					"sinks": [
 						{
 							"dataset": {
-								"referenceName": "HogiaSinkParquet",
+								"referenceName": "HogiaSinkMVD",
 								"type": "DatasetReference"
 							},
 							"name": "sink1"
 						}
 					],
-					"transformations": [
-						{
-							"name": "Select1"
-						}
-					],
-					"script": "source(output(\n\t\tJourneyState as string,\n\t\tOrganizationId as string,\n\t\tJourneyRef as (ObjectRef as string, OperatingDayDate as string),\n\t\tTimeStamps as (TimeStamp as string, Name as string)[],\n\t\tpartitionKey as string,\n\t\tLastModifiedDateTime as string,\n\t\tttl as string,\n\t\tid as string,\n\t\tType as string,\n\t\t{_rid} as string,\n\t\t{_self} as string,\n\t\t{_etag} as string,\n\t\t{_attachments} as string,\n\t\t{_ts} as string,\n\t\tEventType as string,\n\t\tBlockAssignment as (BlockRef as (ObjectRef as string, OperatingDayDate as string), BlockNumber as string),\n\t\tTransportMode as string,\n\t\tReportedByOrganizationId as string,\n\t\tVehicleRef as string,\n\t\tVehicleNumber as string,\n\t\tValidFromDateTime as string,\n\t\tCalls as (SequenceNumber as string, ArrivalState as string, DepartureState as string, ArrivalForecastDateTime as string, ArrivalObservedDateTime as string, DepartureForecastDateTime as string, DepartureObservedDateTime as string)[]\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false,\n\tdocumentForm: 'arrayOfDocuments',\n\tpartitionBy('hash', 1)) ~> sourceJson\nsourceJson select(mapColumn(\n\t\tForecastedAtJourneyPatternSequenceNumber,\n\t\tOnboardCountForecasts,\n\t\tOrganizationId,\n\t\tTimeStamps,\n\t\tpartitionKey,\n\t\tLastModifiedDateTime,\n\t\tid,\n\t\tType,\n\t\t{_rid},\n\t\t{_self},\n\t\t{_etag},\n\t\t{_attachments},\n\t\t{_ts},\n\t\t{JourneyRef.ObjectRef} = JourneyRef.ObjectRef,\n\t\t{JourneyRef.OperatingDayDate} = JourneyRef.OperatingDayDate\n\t),\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> Select1\nSelect1 sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tformat: 'parquet',\n\ttruncate: true,\n\tmapColumn(\n\t\tForecastedAtJourneyPatternSequenceNumber,\n\t\tOnboardCountForecasts,\n\t\tOrganizationId,\n\t\tTimeStamps,\n\t\tpartitionKey,\n\t\tLastModifiedDateTime,\n\t\tid,\n\t\tType,\n\t\t{_rid},\n\t\t{_self},\n\t\t{_etag},\n\t\t{_attachments},\n\t\t{_ts},\n\t\tJourneyRef_ObjectRef = {JourneyRef.ObjectRef},\n\t\tJourneyRef_OperatingDayDate = {JourneyRef.OperatingDayDate}\n\t),\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> sink1"
+					"transformations": [],
+					"script": "source(output(\n\t\tJourneyState as string,\n\t\tOrganizationId as string,\n\t\tJourneyRef as (ObjectRef as string, OperatingDayDate as string),\n\t\tTimeStamps as (TimeStamp as string, Name as string)[],\n\t\tpartitionKey as string,\n\t\tLastModifiedDateTime as string,\n\t\tttl as string,\n\t\tid as string,\n\t\tType as string,\n\t\t{_rid} as string,\n\t\t{_self} as string,\n\t\t{_etag} as string,\n\t\t{_attachments} as string,\n\t\t{_ts} as string,\n\t\tEventType as string,\n\t\tBlockAssignment as (BlockRef as (ObjectRef as string, OperatingDayDate as string), BlockNumber as string),\n\t\tTransportMode as string,\n\t\tReportedByOrganizationId as string,\n\t\tVehicleRef as string,\n\t\tVehicleNumber as string,\n\t\tValidFromDateTime as string,\n\t\tCalls as (SequenceNumber as string, ArrivalState as string, DepartureState as string, ArrivalForecastDateTime as string, ArrivalObservedDateTime as string, DepartureForecastDateTime as string, DepartureObservedDateTime as string)[]\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false,\n\tdocumentForm: 'arrayOfDocuments',\n\tpartitionBy('hash', 1)) ~> sourceJson\nsourceJson sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tformat: 'parquet',\n\ttruncate: true,\n\tmapColumn(\n\t\tJourneyState,\n\t\tOrganizationId,\n\t\tTimeStamps,\n\t\tpartitionKey,\n\t\tLastModifiedDateTime,\n\t\tttl,\n\t\tid,\n\t\tType,\n\t\t{_rid},\n\t\t{_self},\n\t\t{_etag},\n\t\t{_attachments},\n\t\t{_ts},\n\t\tEventType,\n\t\tBlockAssignment,\n\t\tTransportMode,\n\t\tReportedByOrganizationId,\n\t\tVehicleRef,\n\t\tVehicleNumber,\n\t\tValidFromDateTime,\n\t\tCalls,\n\t\tObjectRef = JourneyRef.ObjectRef,\n\t\tOperatingDayDate = JourneyRef.OperatingDayDate\n\t),\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> sink1"
 				}
 			},
 			"dependsOn": [
-				"[concat(variables('workspaceId'), '/datasets/HogiaSourceJSON')]",
-				"[concat(variables('workspaceId'), '/datasets/HogiaSinkParquet')]"
+				"[concat(variables('workspaceId'), '/datasets/HogiaSourceMVD')]",
+				"[concat(variables('workspaceId'), '/datasets/HogiaSinkMVD')]"
 			]
 		},
 		{
@@ -2520,12 +2630,8 @@
 							"name": "sink1"
 						}
 					],
-					"transformations": [
-						{
-							"name": "Select1"
-						}
-					],
-					"script": "source(output(\n\t\tJourneyState as string,\n\t\tOrganizationId as string,\n\t\tJourneyRef as (ObjectRef as string, OperatingDayDate as string),\n\t\tTimeStamps as (TimeStamp as string, Name as string)[],\n\t\tpartitionKey as string,\n\t\tLastModifiedDateTime as string,\n\t\tttl as string,\n\t\tid as string,\n\t\tType as string,\n\t\t{_rid} as string,\n\t\t{_self} as string,\n\t\t{_etag} as string,\n\t\t{_attachments} as string,\n\t\t{_ts} as string,\n\t\tEventType as string,\n\t\tBlockAssignment as (BlockRef as (ObjectRef as string, OperatingDayDate as string), BlockNumber as string),\n\t\tTransportMode as string,\n\t\tReportedByOrganizationId as string,\n\t\tVehicleRef as string,\n\t\tVehicleNumber as string,\n\t\tValidFromDateTime as string,\n\t\tCalls as (SequenceNumber as string, ArrivalState as string, DepartureState as string, ArrivalForecastDateTime as string, ArrivalObservedDateTime as string, DepartureForecastDateTime as string, DepartureObservedDateTime as string)[]\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false,\n\tdocumentForm: 'arrayOfDocuments',\n\tpartitionBy('hash', 1)) ~> sourceJson\nsourceJson select(mapColumn(\n\t\tForecastedAtJourneyPatternSequenceNumber,\n\t\tOnboardCountForecasts,\n\t\tOrganizationId,\n\t\tTimeStamps,\n\t\tpartitionKey,\n\t\tLastModifiedDateTime,\n\t\tid,\n\t\tType,\n\t\t{_rid},\n\t\t{_self},\n\t\t{_etag},\n\t\t{_attachments},\n\t\t{_ts},\n\t\t{JourneyRef.ObjectRef} = JourneyRef.ObjectRef,\n\t\t{JourneyRef.OperatingDayDate} = JourneyRef.OperatingDayDate\n\t),\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> Select1\nSelect1 sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tformat: 'parquet',\n\ttruncate: true,\n\tmapColumn(\n\t\tForecastedAtJourneyPatternSequenceNumber,\n\t\tOnboardCountForecasts,\n\t\tOrganizationId,\n\t\tTimeStamps,\n\t\tpartitionKey,\n\t\tLastModifiedDateTime,\n\t\tid,\n\t\tType,\n\t\t{_rid},\n\t\t{_self},\n\t\t{_etag},\n\t\t{_attachments},\n\t\t{_ts},\n\t\tJourneyRef_ObjectRef = {JourneyRef.ObjectRef},\n\t\tJourneyRef_OperatingDayDate = {JourneyRef.OperatingDayDate}\n\t),\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> sink1"
+					"transformations": [],
+					"script": "source(output(\n\t\tForecastedAtJourneyPatternSequenceNumber as string,\n\t\tOnboardCountForecasts as (JourneyPatternSequenceNumber as string, OnboardCount as string)[],\n\t\tOrganizationId as string,\n\t\tJourneyRef as (ObjectRef as string, OperatingDayDate as string),\n\t\tTimeStamps as string,\n\t\tpartitionKey as string,\n\t\tLastModifiedDateTime as string,\n\t\tid as string,\n\t\tType as string,\n\t\t{_rid} as string,\n\t\t{_self} as string,\n\t\t{_etag} as string,\n\t\t{_attachments} as string,\n\t\t{_ts} as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false,\n\tdocumentForm: 'arrayOfDocuments',\n\tpartitionBy('hash', 1)) ~> sourceJson\nsourceJson sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tformat: 'parquet',\n\ttruncate: true,\n\tmapColumn(\n\t\tForecastedAtJourneyPatternSequenceNumber,\n\t\tOnboardCountForecasts,\n\t\tOrganizationId,\n\t\tTimeStamps,\n\t\tpartitionKey,\n\t\tLastModifiedDateTime,\n\t\tid,\n\t\tType,\n\t\t{_rid},\n\t\t{_self},\n\t\t{_etag},\n\t\t{_attachments},\n\t\t{_ts},\n\t\tObjectRed = JourneyRef.ObjectRef,\n\t\tOperatingDayDate = JourneyRef.OperatingDayDate\n\t),\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> sink1"
 				}
 			},
 			"dependsOn": [
