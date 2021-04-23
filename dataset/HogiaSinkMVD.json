@@ -1,0 +1,20 @@
+{
+	"name": "HogiaSinkMVD",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "HankyADLS",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"folderPath": "Hogia/PARQUET/monitoredvehiclejourneysdomain/MonitoredVehicleJourneys",
+				"fileSystem": "partners"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": []
+	}
+}

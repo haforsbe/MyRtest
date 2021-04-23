@@ -6,7 +6,7 @@
 			"sources": [
 				{
 					"dataset": {
-						"referenceName": "HogiaSourceJSON",
+						"referenceName": "HogiaSourceMVD",
 						"type": "DatasetReference"
 					},
 					"name": "sourceJson"
@@ -15,7 +15,7 @@
 			"sinks": [
 				{
 					"dataset": {
-						"referenceName": "HogiaSinkParquet",
+						"referenceName": "HogiaSinkMVD",
 						"type": "DatasetReference"
 					},
 					"name": "sink1"
