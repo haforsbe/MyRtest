@@ -11,15 +11,29 @@
 			"location": {
 				"type": "AzureBlobFSLocation",
 				"fileName": "documents_for_partiton_265581f3-17e5-4d58-bba1-a97b00dfcf9690150120008001582021-02-11.json",
-				"folderPath": "Hogia/JSON/monitoredvehiclejourneysdomain/MonitoredVehicleJourneys",
+				"folderPath": "Hogia/JSON/monitoredvehiclejourneysdomain/PassengerLoadForecasts",
 				"fileSystem": "partners"
 			}
 		},
 		"schema": {
 			"type": "object",
 			"properties": {
-				"JourneyState": {
+				"ForecastedAtJourneyPatternSequenceNumber": {
 					"type": "integer"
+				},
+				"OnboardCountForecasts": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"JourneyPatternSequenceNumber": {
+								"type": "integer"
+							},
+							"OnboardCount": {
+								"type": "integer"
+							}
+						}
+					}
 				},
 				"OrganizationId": {
 					"type": "string"
@@ -36,27 +50,13 @@
 					}
 				},
 				"TimeStamps": {
-					"type": "array",
-					"items": {
-						"type": "object",
-						"properties": {
-							"TimeStamp": {
-								"type": "string"
-							},
-							"Name": {
-								"type": "string"
-							}
-						}
-					}
+					"type": "null"
 				},
 				"partitionKey": {
 					"type": "string"
 				},
 				"LastModifiedDateTime": {
 					"type": "string"
-				},
-				"ttl": {
-					"type": "integer"
 				},
 				"id": {
 					"type": "string"
@@ -78,72 +78,6 @@
 				},
 				"_ts": {
 					"type": "integer"
-				},
-				"EventType": {
-					"type": "integer"
-				},
-				"BlockAssignment": {
-					"type": "object",
-					"properties": {
-						"BlockRef": {
-							"type": "object",
-							"properties": {
-								"ObjectRef": {
-									"type": "string"
-								},
-								"OperatingDayDate": {
-									"type": "string"
-								}
-							}
-						},
-						"BlockNumber": {
-							"type": "integer"
-						}
-					}
-				},
-				"TransportMode": {
-					"type": "integer"
-				},
-				"ReportedByOrganizationId": {
-					"type": "string"
-				},
-				"VehicleRef": {
-					"type": "string"
-				},
-				"VehicleNumber": {
-					"type": "integer"
-				},
-				"ValidFromDateTime": {
-					"type": "string"
-				},
-				"Calls": {
-					"type": "array",
-					"items": {
-						"type": "object",
-						"properties": {
-							"SequenceNumber": {
-								"type": "integer"
-							},
-							"ArrivalState": {
-								"type": "integer"
-							},
-							"DepartureState": {
-								"type": "integer"
-							},
-							"ArrivalForecastDateTime": {
-								"type": "string"
-							},
-							"ArrivalObservedDateTime": {
-								"type": "string"
-							},
-							"DepartureForecastDateTime": {
-								"type": "string"
-							},
-							"DepartureObservedDateTime": {
-								"type": "string"
-							}
-						}
-					}
 				}
 			}
 		}
