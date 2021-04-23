@@ -1,0 +1,32 @@
+{
+	"name": "MonitoredVehicleJourneys",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "HogiaSourceJSON",
+						"type": "DatasetReference"
+					},
+					"name": "sourceJson"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "HogiaSinkParquet",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
+			"transformations": [
+				{
+					"name": "Select1"
+				}
+			],
+			"script": "source(output(\n\t\tForecastedAtJourneyPatternSequenceNumber as string,\n\t\tOnboardCountForecasts as (JourneyPatternSequenceNumber as string, OnboardCount as string)[],\n\t\tOrganizationId as string,\n\t\tJourneyRef as (ObjectRef as string, OperatingDayDate as string),\n\t\tTimeStamps as string,\n\t\tpartitionKey as string,\n\t\tLastModifiedDateTime as string,\n\t\tid as string,\n\t\tType as string,\n\t\t{_rid} as string,\n\t\t{_self} as string,\n\t\t{_etag} as string,\n\t\t{_attachments} as string,\n\t\t{_ts} as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false,\n\tdocumentForm: 'arrayOfDocuments',\n\tpartitionBy('hash', 1)) ~> sourceJson\nsourceJson select(mapColumn(\n\t\tForecastedAtJourneyPatternSequenceNumber,\n\t\tOnboardCountForecasts,\n\t\tOrganizationId,\n\t\tTimeStamps,\n\t\tpartitionKey,\n\t\tLastModifiedDateTime,\n\t\tid,\n\t\tType,\n\t\t{_rid},\n\t\t{_self},\n\t\t{_etag},\n\t\t{_attachments},\n\t\t{_ts},\n\t\t{JourneyRef.ObjectRef} = JourneyRef.ObjectRef,\n\t\t{JourneyRef.OperatingDayDate} = JourneyRef.OperatingDayDate\n\t),\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> Select1\nSelect1 sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tformat: 'parquet',\n\ttruncate: true,\n\tmapColumn(\n\t\tForecastedAtJourneyPatternSequenceNumber,\n\t\tOnboardCountForecasts,\n\t\tOrganizationId,\n\t\tTimeStamps,\n\t\tpartitionKey,\n\t\tLastModifiedDateTime,\n\t\tid,\n\t\tType,\n\t\t{_rid},\n\t\t{_self},\n\t\t{_etag},\n\t\t{_attachments},\n\t\t{_ts},\n\t\tJourneyRef_ObjectRef = {JourneyRef.ObjectRef},\n\t\tJourneyRef_OperatingDayDate = {JourneyRef.OperatingDayDate}\n\t),\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> sink1"
+		}
+	}
+}
