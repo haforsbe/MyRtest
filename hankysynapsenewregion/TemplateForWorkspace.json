@@ -1525,8 +1525,8 @@
 			"properties": {
 				"activities": [
 					{
-						"name": "Copy data1",
-						"type": "Copy",
+						"name": "Data flow1",
+						"type": "ExecuteDataFlow",
 						"dependsOn": [],
 						"policy": {
 							"timeout": "7.00:00:00",
@@ -1537,313 +1537,22 @@
 						},
 						"userProperties": [],
 						"typeProperties": {
-							"source": {
-								"type": "JsonSource",
-								"storeSettings": {
-									"type": "AzureBlobFSReadSettings",
-									"recursive": false,
-									"enablePartitionDiscovery": false
-								},
-								"formatSettings": {
-									"type": "JsonReadSettings"
+							"dataflow": {
+								"referenceName": "MonitoredVehicleJourneys",
+								"type": "DataFlowReference",
+								"parameters": {},
+								"datasetParameters": {
+									"sourceJson": {},
+									"sink1": {}
 								}
 							},
-							"sink": {
-								"type": "ParquetSink",
-								"storeSettings": {
-									"type": "AzureBlobFSWriteSettings",
-									"copyBehavior": "FlattenHierarchy"
-								},
-								"formatSettings": {
-									"type": "ParquetWriteSettings"
-								}
+							"staging": {},
+							"compute": {
+								"coreCount": 8,
+								"computeType": "General"
 							},
-							"enableStaging": false,
-							"translator": {
-								"type": "TabularTranslator",
-								"mappings": [
-									{
-										"source": {
-											"path": "['SequenceNumber']"
-										},
-										"sink": {
-											"name": "SequenceNumber"
-										}
-									},
-									{
-										"source": {
-											"path": "['JourneyPatternPointRef']"
-										},
-										"sink": {
-											"name": "JourneyPatternPointRef"
-										}
-									},
-									{
-										"source": {
-											"path": "['IsTimingPoint']"
-										},
-										"sink": {
-											"name": "IsTimingPoint"
-										}
-									},
-									{
-										"source": {
-											"path": "['DepartureTimetabledEarliestDateTime']"
-										},
-										"sink": {
-											"name": "DepartureTimetabledEarliestDateTime"
-										}
-									},
-									{
-										"source": {
-											"path": "['ArrivalTimetabledLatestDateTime']"
-										},
-										"sink": {
-											"name": "ArrivalTimetabledLatestDateTime"
-										}
-									},
-									{
-										"source": {
-											"path": "$['JourneyNumber']"
-										},
-										"sink": {
-											"name": "JourneyNumber"
-										}
-									},
-									{
-										"source": {
-											"path": "$['OriginName']"
-										},
-										"sink": {
-											"name": "OriginName"
-										}
-									},
-									{
-										"source": {
-											"path": "$['PrimaryDestinationName']"
-										},
-										"sink": {
-											"name": "PrimaryDestinationName"
-										}
-									},
-									{
-										"source": {
-											"path": "$['SecondaryDestinationName']"
-										},
-										"sink": {
-											"name": "SecondaryDestinationName"
-										}
-									},
-									{
-										"source": {
-											"path": "$['SecondaryDestinationType']"
-										},
-										"sink": {
-											"name": "SecondaryDestinationType"
-										}
-									},
-									{
-										"source": {
-											"path": "$['TransportMode']"
-										},
-										"sink": {
-											"name": "TransportMode"
-										}
-									},
-									{
-										"source": {
-											"path": "$['ContractorOrganizationId']"
-										},
-										"sink": {
-											"name": "ContractorOrganizationId"
-										}
-									},
-									{
-										"source": {
-											"path": "$['TimetabledStartDateTime']"
-										},
-										"sink": {
-											"name": "TimetabledStartDateTime"
-										}
-									},
-									{
-										"source": {
-											"path": "$['TimetabledEndDateTime']"
-										},
-										"sink": {
-											"name": "TimetabledEndDateTime"
-										}
-									},
-									{
-										"source": {
-											"path": "$['LineRef']"
-										},
-										"sink": {
-											"name": "LineRef"
-										}
-									},
-									{
-										"source": {
-											"path": "$['DirectionOfLineRef']"
-										},
-										"sink": {
-											"name": "DirectionOfLineRef"
-										}
-									},
-									{
-										"source": {
-											"path": "$['JourneyPatternRef']"
-										},
-										"sink": {
-											"name": "JourneyPatternRef"
-										}
-									},
-									{
-										"source": {
-											"path": "$['AdvanceOrderCondition']"
-										},
-										"sink": {
-											"name": "AdvanceOrderCondition"
-										}
-									},
-									{
-										"source": {
-											"path": "$['JourneyCreationParameters']"
-										},
-										"sink": {
-											"name": "JourneyCreationParameters"
-										}
-									},
-									{
-										"source": {
-											"path": "$['JourneyRef']['ObjectRef']"
-										},
-										"sink": {
-											"name": "ObjectRef"
-										}
-									},
-									{
-										"source": {
-											"path": "$['JourneyRef']['OperatingDayDate']"
-										},
-										"sink": {
-											"name": "OperatingDayDate"
-										}
-									},
-									{
-										"source": {
-											"path": "$['TimeStamps'][0]['TimeStamp']"
-										},
-										"sink": {
-											"name": "TimeStamp"
-										}
-									},
-									{
-										"source": {
-											"path": "$['TimeStamps'][0]['Name']"
-										},
-										"sink": {
-											"name": "Name"
-										}
-									},
-									{
-										"source": {
-											"path": "$['partitionKey']"
-										},
-										"sink": {
-											"name": "partitionKey"
-										}
-									},
-									{
-										"source": {
-											"path": "$['LastModifiedDateTime']"
-										},
-										"sink": {
-											"name": "LastModifiedDateTime"
-										}
-									},
-									{
-										"source": {
-											"path": "$['ttl']"
-										},
-										"sink": {
-											"name": "ttl"
-										}
-									},
-									{
-										"source": {
-											"path": "$['id']"
-										},
-										"sink": {
-											"name": "id"
-										}
-									},
-									{
-										"source": {
-											"path": "$['Type']"
-										},
-										"sink": {
-											"name": "Type"
-										}
-									},
-									{
-										"source": {
-											"path": "$['_rid']"
-										},
-										"sink": {
-											"name": "_rid"
-										}
-									},
-									{
-										"source": {
-											"path": "$['_self']"
-										},
-										"sink": {
-											"name": "_self"
-										}
-									},
-									{
-										"source": {
-											"path": "$['_etag']"
-										},
-										"sink": {
-											"name": "_etag"
-										}
-									},
-									{
-										"source": {
-											"path": "$['_attachments']"
-										},
-										"sink": {
-											"name": "_attachments"
-										}
-									},
-									{
-										"source": {
-											"path": "$['_ts']"
-										},
-										"sink": {
-											"name": "_ts"
-										}
-									}
-								],
-								"collectionReference": "$['Calls']"
-							}
-						},
-						"inputs": [
-							{
-								"referenceName": "HogiaSourceJSON",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "HogiaSinkParquet",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
+							"traceLevel": "Fine"
+						}
 					}
 				],
 				"folder": {
@@ -1853,8 +1562,8 @@
 				"lastPublishTime": "2021-02-22T13:13:06Z"
 			},
 			"dependsOn": [
-				"[concat(variables('workspaceId'), '/datasets/HogiaSourceJSON')]",
-				"[concat(variables('workspaceId'), '/datasets/HogiaSinkParquet')]"
+				"[concat(variables('workspaceId'), '/dataflows/MonitoredVehicleJourneys')]",
+				"[concat(variables('workspaceId'), '/integrationRuntimes/AutoResolveIntegrationRuntime')]"
 			]
 		},
 		{
@@ -2097,8 +1806,8 @@
 			"properties": {
 				"activities": [
 					{
-						"name": "Copy data1",
-						"type": "Copy",
+						"name": "Data flow1",
+						"type": "ExecuteDataFlow",
 						"dependsOn": [],
 						"policy": {
 							"timeout": "7.00:00:00",
@@ -2109,313 +1818,22 @@
 						},
 						"userProperties": [],
 						"typeProperties": {
-							"source": {
-								"type": "JsonSource",
-								"storeSettings": {
-									"type": "AzureBlobFSReadSettings",
-									"recursive": false,
-									"enablePartitionDiscovery": false
-								},
-								"formatSettings": {
-									"type": "JsonReadSettings"
+							"dataflow": {
+								"referenceName": "PassengerLoadForecast",
+								"type": "DataFlowReference",
+								"parameters": {},
+								"datasetParameters": {
+									"sourceJson": {},
+									"sink1": {}
 								}
 							},
-							"sink": {
-								"type": "ParquetSink",
-								"storeSettings": {
-									"type": "AzureBlobFSWriteSettings",
-									"copyBehavior": "FlattenHierarchy"
-								},
-								"formatSettings": {
-									"type": "ParquetWriteSettings"
-								}
+							"staging": {},
+							"compute": {
+								"coreCount": 8,
+								"computeType": "General"
 							},
-							"enableStaging": false,
-							"translator": {
-								"type": "TabularTranslator",
-								"mappings": [
-									{
-										"source": {
-											"path": "['SequenceNumber']"
-										},
-										"sink": {
-											"name": "SequenceNumber"
-										}
-									},
-									{
-										"source": {
-											"path": "['JourneyPatternPointRef']"
-										},
-										"sink": {
-											"name": "JourneyPatternPointRef"
-										}
-									},
-									{
-										"source": {
-											"path": "['IsTimingPoint']"
-										},
-										"sink": {
-											"name": "IsTimingPoint"
-										}
-									},
-									{
-										"source": {
-											"path": "['DepartureTimetabledEarliestDateTime']"
-										},
-										"sink": {
-											"name": "DepartureTimetabledEarliestDateTime"
-										}
-									},
-									{
-										"source": {
-											"path": "['ArrivalTimetabledLatestDateTime']"
-										},
-										"sink": {
-											"name": "ArrivalTimetabledLatestDateTime"
-										}
-									},
-									{
-										"source": {
-											"path": "$['JourneyNumber']"
-										},
-										"sink": {
-											"name": "JourneyNumber"
-										}
-									},
-									{
-										"source": {
-											"path": "$['OriginName']"
-										},
-										"sink": {
-											"name": "OriginName"
-										}
-									},
-									{
-										"source": {
-											"path": "$['PrimaryDestinationName']"
-										},
-										"sink": {
-											"name": "PrimaryDestinationName"
-										}
-									},
-									{
-										"source": {
-											"path": "$['SecondaryDestinationName']"
-										},
-										"sink": {
-											"name": "SecondaryDestinationName"
-										}
-									},
-									{
-										"source": {
-											"path": "$['SecondaryDestinationType']"
-										},
-										"sink": {
-											"name": "SecondaryDestinationType"
-										}
-									},
-									{
-										"source": {
-											"path": "$['TransportMode']"
-										},
-										"sink": {
-											"name": "TransportMode"
-										}
-									},
-									{
-										"source": {
-											"path": "$['ContractorOrganizationId']"
-										},
-										"sink": {
-											"name": "ContractorOrganizationId"
-										}
-									},
-									{
-										"source": {
-											"path": "$['TimetabledStartDateTime']"
-										},
-										"sink": {
-											"name": "TimetabledStartDateTime"
-										}
-									},
-									{
-										"source": {
-											"path": "$['TimetabledEndDateTime']"
-										},
-										"sink": {
-											"name": "TimetabledEndDateTime"
-										}
-									},
-									{
-										"source": {
-											"path": "$['LineRef']"
-										},
-										"sink": {
-											"name": "LineRef"
-										}
-									},
-									{
-										"source": {
-											"path": "$['DirectionOfLineRef']"
-										},
-										"sink": {
-											"name": "DirectionOfLineRef"
-										}
-									},
-									{
-										"source": {
-											"path": "$['JourneyPatternRef']"
-										},
-										"sink": {
-											"name": "JourneyPatternRef"
-										}
-									},
-									{
-										"source": {
-											"path": "$['AdvanceOrderCondition']"
-										},
-										"sink": {
-											"name": "AdvanceOrderCondition"
-										}
-									},
-									{
-										"source": {
-											"path": "$['JourneyCreationParameters']"
-										},
-										"sink": {
-											"name": "JourneyCreationParameters"
-										}
-									},
-									{
-										"source": {
-											"path": "$['JourneyRef']['ObjectRef']"
-										},
-										"sink": {
-											"name": "ObjectRef"
-										}
-									},
-									{
-										"source": {
-											"path": "$['JourneyRef']['OperatingDayDate']"
-										},
-										"sink": {
-											"name": "OperatingDayDate"
-										}
-									},
-									{
-										"source": {
-											"path": "$['TimeStamps'][0]['TimeStamp']"
-										},
-										"sink": {
-											"name": "TimeStamp"
-										}
-									},
-									{
-										"source": {
-											"path": "$['TimeStamps'][0]['Name']"
-										},
-										"sink": {
-											"name": "Name"
-										}
-									},
-									{
-										"source": {
-											"path": "$['partitionKey']"
-										},
-										"sink": {
-											"name": "partitionKey"
-										}
-									},
-									{
-										"source": {
-											"path": "$['LastModifiedDateTime']"
-										},
-										"sink": {
-											"name": "LastModifiedDateTime"
-										}
-									},
-									{
-										"source": {
-											"path": "$['ttl']"
-										},
-										"sink": {
-											"name": "ttl"
-										}
-									},
-									{
-										"source": {
-											"path": "$['id']"
-										},
-										"sink": {
-											"name": "id"
-										}
-									},
-									{
-										"source": {
-											"path": "$['Type']"
-										},
-										"sink": {
-											"name": "Type"
-										}
-									},
-									{
-										"source": {
-											"path": "$['_rid']"
-										},
-										"sink": {
-											"name": "_rid"
-										}
-									},
-									{
-										"source": {
-											"path": "$['_self']"
-										},
-										"sink": {
-											"name": "_self"
-										}
-									},
-									{
-										"source": {
-											"path": "$['_etag']"
-										},
-										"sink": {
-											"name": "_etag"
-										}
-									},
-									{
-										"source": {
-											"path": "$['_attachments']"
-										},
-										"sink": {
-											"name": "_attachments"
-										}
-									},
-									{
-										"source": {
-											"path": "$['_ts']"
-										},
-										"sink": {
-											"name": "_ts"
-										}
-									}
-								],
-								"collectionReference": "$['Calls']"
-							}
-						},
-						"inputs": [
-							{
-								"referenceName": "HogiaSourceJSON",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "HogiaSinkParquet",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
+							"traceLevel": "Fine"
+						}
 					}
 				],
 				"folder": {
@@ -2425,347 +1843,7 @@
 				"lastPublishTime": "2021-02-22T13:13:06Z"
 			},
 			"dependsOn": [
-				"[concat(variables('workspaceId'), '/datasets/HogiaSourceJSON')]",
-				"[concat(variables('workspaceId'), '/datasets/HogiaSinkParquet')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('workspaceName'), '/Pipeline 1')]",
-			"type": "Microsoft.Synapse/workspaces/pipelines",
-			"apiVersion": "2019-06-01-preview",
-			"properties": {
-				"activities": [
-					{
-						"name": "Copy data1",
-						"type": "Copy",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "JsonSource",
-								"storeSettings": {
-									"type": "AzureBlobFSReadSettings",
-									"recursive": false,
-									"enablePartitionDiscovery": false
-								},
-								"formatSettings": {
-									"type": "JsonReadSettings"
-								}
-							},
-							"sink": {
-								"type": "ParquetSink",
-								"storeSettings": {
-									"type": "AzureBlobFSWriteSettings",
-									"copyBehavior": "FlattenHierarchy"
-								},
-								"formatSettings": {
-									"type": "ParquetWriteSettings"
-								}
-							},
-							"enableStaging": false,
-							"translator": {
-								"type": "TabularTranslator",
-								"mappings": [
-									{
-										"source": {
-											"path": "['SequenceNumber']"
-										},
-										"sink": {
-											"name": "SequenceNumber"
-										}
-									},
-									{
-										"source": {
-											"path": "['JourneyPatternPointRef']"
-										},
-										"sink": {
-											"name": "JourneyPatternPointRef"
-										}
-									},
-									{
-										"source": {
-											"path": "['IsTimingPoint']"
-										},
-										"sink": {
-											"name": "IsTimingPoint"
-										}
-									},
-									{
-										"source": {
-											"path": "['DepartureTimetabledEarliestDateTime']"
-										},
-										"sink": {
-											"name": "DepartureTimetabledEarliestDateTime"
-										}
-									},
-									{
-										"source": {
-											"path": "['ArrivalTimetabledLatestDateTime']"
-										},
-										"sink": {
-											"name": "ArrivalTimetabledLatestDateTime"
-										}
-									},
-									{
-										"source": {
-											"path": "$['JourneyNumber']"
-										},
-										"sink": {
-											"name": "JourneyNumber"
-										}
-									},
-									{
-										"source": {
-											"path": "$['OriginName']"
-										},
-										"sink": {
-											"name": "OriginName"
-										}
-									},
-									{
-										"source": {
-											"path": "$['PrimaryDestinationName']"
-										},
-										"sink": {
-											"name": "PrimaryDestinationName"
-										}
-									},
-									{
-										"source": {
-											"path": "$['SecondaryDestinationName']"
-										},
-										"sink": {
-											"name": "SecondaryDestinationName"
-										}
-									},
-									{
-										"source": {
-											"path": "$['SecondaryDestinationType']"
-										},
-										"sink": {
-											"name": "SecondaryDestinationType"
-										}
-									},
-									{
-										"source": {
-											"path": "$['TransportMode']"
-										},
-										"sink": {
-											"name": "TransportMode"
-										}
-									},
-									{
-										"source": {
-											"path": "$['ContractorOrganizationId']"
-										},
-										"sink": {
-											"name": "ContractorOrganizationId"
-										}
-									},
-									{
-										"source": {
-											"path": "$['TimetabledStartDateTime']"
-										},
-										"sink": {
-											"name": "TimetabledStartDateTime"
-										}
-									},
-									{
-										"source": {
-											"path": "$['TimetabledEndDateTime']"
-										},
-										"sink": {
-											"name": "TimetabledEndDateTime"
-										}
-									},
-									{
-										"source": {
-											"path": "$['LineRef']"
-										},
-										"sink": {
-											"name": "LineRef"
-										}
-									},
-									{
-										"source": {
-											"path": "$['DirectionOfLineRef']"
-										},
-										"sink": {
-											"name": "DirectionOfLineRef"
-										}
-									},
-									{
-										"source": {
-											"path": "$['JourneyPatternRef']"
-										},
-										"sink": {
-											"name": "JourneyPatternRef"
-										}
-									},
-									{
-										"source": {
-											"path": "$['AdvanceOrderCondition']"
-										},
-										"sink": {
-											"name": "AdvanceOrderCondition"
-										}
-									},
-									{
-										"source": {
-											"path": "$['JourneyCreationParameters']"
-										},
-										"sink": {
-											"name": "JourneyCreationParameters"
-										}
-									},
-									{
-										"source": {
-											"path": "$['JourneyRef']['ObjectRef']"
-										},
-										"sink": {
-											"name": "ObjectRef"
-										}
-									},
-									{
-										"source": {
-											"path": "$['JourneyRef']['OperatingDayDate']"
-										},
-										"sink": {
-											"name": "OperatingDayDate"
-										}
-									},
-									{
-										"source": {
-											"path": "$['TimeStamps'][0]['TimeStamp']"
-										},
-										"sink": {
-											"name": "TimeStamp"
-										}
-									},
-									{
-										"source": {
-											"path": "$['TimeStamps'][0]['Name']"
-										},
-										"sink": {
-											"name": "Name"
-										}
-									},
-									{
-										"source": {
-											"path": "$['partitionKey']"
-										},
-										"sink": {
-											"name": "partitionKey"
-										}
-									},
-									{
-										"source": {
-											"path": "$['LastModifiedDateTime']"
-										},
-										"sink": {
-											"name": "LastModifiedDateTime"
-										}
-									},
-									{
-										"source": {
-											"path": "$['ttl']"
-										},
-										"sink": {
-											"name": "ttl"
-										}
-									},
-									{
-										"source": {
-											"path": "$['id']"
-										},
-										"sink": {
-											"name": "id"
-										}
-									},
-									{
-										"source": {
-											"path": "$['Type']"
-										},
-										"sink": {
-											"name": "Type"
-										}
-									},
-									{
-										"source": {
-											"path": "$['_rid']"
-										},
-										"sink": {
-											"name": "_rid"
-										}
-									},
-									{
-										"source": {
-											"path": "$['_self']"
-										},
-										"sink": {
-											"name": "_self"
-										}
-									},
-									{
-										"source": {
-											"path": "$['_etag']"
-										},
-										"sink": {
-											"name": "_etag"
-										}
-									},
-									{
-										"source": {
-											"path": "$['_attachments']"
-										},
-										"sink": {
-											"name": "_attachments"
-										}
-									},
-									{
-										"source": {
-											"path": "$['_ts']"
-										},
-										"sink": {
-											"name": "_ts"
-										}
-									}
-								],
-								"collectionReference": "$['Calls']"
-							}
-						},
-						"inputs": [
-							{
-								"referenceName": "HogiaSourceJSON",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "HogiaSinkParquet",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					}
-				],
-				"folder": {
-					"name": "Partners/Hogia"
-				},
-				"annotations": [],
-				"lastPublishTime": "2021-02-22T13:13:06Z"
-			},
-			"dependsOn": [
-				"[concat(variables('workspaceId'), '/datasets/HogiaSourceJSON')]",
-				"[concat(variables('workspaceId'), '/datasets/HogiaSinkParquet')]"
+				"[concat(variables('workspaceId'), '/dataflows/PassengerLoadForecast')]"
 			]
 		},
 		{
@@ -2994,29 +2072,15 @@
 					"location": {
 						"type": "AzureBlobFSLocation",
 						"fileName": "documents_for_partiton_265581f3-17e5-4d58-bba1-a97b00dfcf9690150120008001582021-02-11.json",
-						"folderPath": "Hogia/JSON/monitoredvehiclejourneysdomain/PassengerLoadForecasts",
+						"folderPath": "Hogia/JSON/monitoredvehiclejourneysdomain/MonitoredVehicleJourneys",
 						"fileSystem": "partners"
 					}
 				},
 				"schema": {
 					"type": "object",
 					"properties": {
-						"ForecastedAtJourneyPatternSequenceNumber": {
+						"JourneyState": {
 							"type": "integer"
-						},
-						"OnboardCountForecasts": {
-							"type": "array",
-							"items": {
-								"type": "object",
-								"properties": {
-									"JourneyPatternSequenceNumber": {
-										"type": "integer"
-									},
-									"OnboardCount": {
-										"type": "integer"
-									}
-								}
-							}
 						},
 						"OrganizationId": {
 							"type": "string"
@@ -3033,13 +2097,27 @@
 							}
 						},
 						"TimeStamps": {
-							"type": "null"
+							"type": "array",
+							"items": {
+								"type": "object",
+								"properties": {
+									"TimeStamp": {
+										"type": "string"
+									},
+									"Name": {
+										"type": "string"
+									}
+								}
+							}
 						},
 						"partitionKey": {
 							"type": "string"
 						},
 						"LastModifiedDateTime": {
 							"type": "string"
+						},
+						"ttl": {
+							"type": "integer"
 						},
 						"id": {
 							"type": "string"
@@ -3061,6 +2139,72 @@
 						},
 						"_ts": {
 							"type": "integer"
+						},
+						"EventType": {
+							"type": "integer"
+						},
+						"BlockAssignment": {
+							"type": "object",
+							"properties": {
+								"BlockRef": {
+									"type": "object",
+									"properties": {
+										"ObjectRef": {
+											"type": "string"
+										},
+										"OperatingDayDate": {
+											"type": "string"
+										}
+									}
+								},
+								"BlockNumber": {
+									"type": "integer"
+								}
+							}
+						},
+						"TransportMode": {
+							"type": "integer"
+						},
+						"ReportedByOrganizationId": {
+							"type": "string"
+						},
+						"VehicleRef": {
+							"type": "string"
+						},
+						"VehicleNumber": {
+							"type": "integer"
+						},
+						"ValidFromDateTime": {
+							"type": "string"
+						},
+						"Calls": {
+							"type": "array",
+							"items": {
+								"type": "object",
+								"properties": {
+									"SequenceNumber": {
+										"type": "integer"
+									},
+									"ArrivalState": {
+										"type": "integer"
+									},
+									"DepartureState": {
+										"type": "integer"
+									},
+									"ArrivalForecastDateTime": {
+										"type": "string"
+									},
+									"ArrivalObservedDateTime": {
+										"type": "string"
+									},
+									"DepartureForecastDateTime": {
+										"type": "string"
+									},
+									"DepartureObservedDateTime": {
+										"type": "string"
+									}
+								}
+							}
 						}
 					}
 				}
@@ -3314,7 +2458,7 @@
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('workspaceName'), '/HogiaTest')]",
+			"name": "[concat(parameters('workspaceName'), '/MonitoredVehicleJourneys')]",
 			"type": "Microsoft.Synapse/workspaces/dataflows",
 			"apiVersion": "2019-06-01-preview",
 			"properties": {
@@ -3343,7 +2487,45 @@
 							"name": "Select1"
 						}
 					],
-					"script": "source(output(\n\t\tForecastedAtJourneyPatternSequenceNumber as string,\n\t\tOnboardCountForecasts as (JourneyPatternSequenceNumber as string, OnboardCount as string)[],\n\t\tOrganizationId as string,\n\t\tJourneyRef as (ObjectRef as string, OperatingDayDate as string),\n\t\tTimeStamps as string,\n\t\tpartitionKey as string,\n\t\tLastModifiedDateTime as string,\n\t\tid as string,\n\t\tType as string,\n\t\t{_rid} as string,\n\t\t{_self} as string,\n\t\t{_etag} as string,\n\t\t{_attachments} as string,\n\t\t{_ts} as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false,\n\tdocumentForm: 'arrayOfDocuments',\n\tpartitionBy('hash', 1)) ~> sourceJson\nsourceJson select(mapColumn(\n\t\tForecastedAtJourneyPatternSequenceNumber,\n\t\tOnboardCountForecasts,\n\t\tOrganizationId,\n\t\tTimeStamps,\n\t\tpartitionKey,\n\t\tLastModifiedDateTime,\n\t\tid,\n\t\tType,\n\t\t{_rid},\n\t\t{_self},\n\t\t{_etag},\n\t\t{_attachments},\n\t\t{_ts},\n\t\t{JourneyRef.ObjectRef} = JourneyRef.ObjectRef,\n\t\t{JourneyRef.OperatingDayDate} = JourneyRef.OperatingDayDate\n\t),\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> Select1\nSelect1 sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tformat: 'parquet',\n\ttruncate: true,\n\tmapColumn(\n\t\tForecastedAtJourneyPatternSequenceNumber,\n\t\tOnboardCountForecasts,\n\t\tOrganizationId,\n\t\tTimeStamps,\n\t\tpartitionKey,\n\t\tLastModifiedDateTime,\n\t\tid,\n\t\tType,\n\t\t{_rid},\n\t\t{_self},\n\t\t{_etag},\n\t\t{_attachments},\n\t\t{_ts},\n\t\tJourneyRef_ObjectRef = {JourneyRef.ObjectRef},\n\t\tJourneyRef_OperatingDayDate = {JourneyRef.OperatingDayDate}\n\t),\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> sink1"
+					"script": "source(output(\n\t\tJourneyState as string,\n\t\tOrganizationId as string,\n\t\tJourneyRef as (ObjectRef as string, OperatingDayDate as string),\n\t\tTimeStamps as (TimeStamp as string, Name as string)[],\n\t\tpartitionKey as string,\n\t\tLastModifiedDateTime as string,\n\t\tttl as string,\n\t\tid as string,\n\t\tType as string,\n\t\t{_rid} as string,\n\t\t{_self} as string,\n\t\t{_etag} as string,\n\t\t{_attachments} as string,\n\t\t{_ts} as string,\n\t\tEventType as string,\n\t\tBlockAssignment as (BlockRef as (ObjectRef as string, OperatingDayDate as string), BlockNumber as string),\n\t\tTransportMode as string,\n\t\tReportedByOrganizationId as string,\n\t\tVehicleRef as string,\n\t\tVehicleNumber as string,\n\t\tValidFromDateTime as string,\n\t\tCalls as (SequenceNumber as string, ArrivalState as string, DepartureState as string, ArrivalForecastDateTime as string, ArrivalObservedDateTime as string, DepartureForecastDateTime as string, DepartureObservedDateTime as string)[]\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false,\n\tdocumentForm: 'arrayOfDocuments',\n\tpartitionBy('hash', 1)) ~> sourceJson\nsourceJson select(mapColumn(\n\t\tForecastedAtJourneyPatternSequenceNumber,\n\t\tOnboardCountForecasts,\n\t\tOrganizationId,\n\t\tTimeStamps,\n\t\tpartitionKey,\n\t\tLastModifiedDateTime,\n\t\tid,\n\t\tType,\n\t\t{_rid},\n\t\t{_self},\n\t\t{_etag},\n\t\t{_attachments},\n\t\t{_ts},\n\t\t{JourneyRef.ObjectRef} = JourneyRef.ObjectRef,\n\t\t{JourneyRef.OperatingDayDate} = JourneyRef.OperatingDayDate\n\t),\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> Select1\nSelect1 sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tformat: 'parquet',\n\ttruncate: true,\n\tmapColumn(\n\t\tForecastedAtJourneyPatternSequenceNumber,\n\t\tOnboardCountForecasts,\n\t\tOrganizationId,\n\t\tTimeStamps,\n\t\tpartitionKey,\n\t\tLastModifiedDateTime,\n\t\tid,\n\t\tType,\n\t\t{_rid},\n\t\t{_self},\n\t\t{_etag},\n\t\t{_attachments},\n\t\t{_ts},\n\t\tJourneyRef_ObjectRef = {JourneyRef.ObjectRef},\n\t\tJourneyRef_OperatingDayDate = {JourneyRef.OperatingDayDate}\n\t),\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> sink1"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('workspaceId'), '/datasets/HogiaSourceJSON')]",
+				"[concat(variables('workspaceId'), '/datasets/HogiaSinkParquet')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('workspaceName'), '/PassengerLoadForecast')]",
+			"type": "Microsoft.Synapse/workspaces/dataflows",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"type": "MappingDataFlow",
+				"typeProperties": {
+					"sources": [
+						{
+							"dataset": {
+								"referenceName": "HogiaSourceJSON",
+								"type": "DatasetReference"
+							},
+							"name": "sourceJson"
+						}
+					],
+					"sinks": [
+						{
+							"dataset": {
+								"referenceName": "HogiaSinkParquet",
+								"type": "DatasetReference"
+							},
+							"name": "sink1"
+						}
+					],
+					"transformations": [
+						{
+							"name": "Select1"
+						}
+					],
+					"script": "source(output(\n\t\tJourneyState as string,\n\t\tOrganizationId as string,\n\t\tJourneyRef as (ObjectRef as string, OperatingDayDate as string),\n\t\tTimeStamps as (TimeStamp as string, Name as string)[],\n\t\tpartitionKey as string,\n\t\tLastModifiedDateTime as string,\n\t\tttl as string,\n\t\tid as string,\n\t\tType as string,\n\t\t{_rid} as string,\n\t\t{_self} as string,\n\t\t{_etag} as string,\n\t\t{_attachments} as string,\n\t\t{_ts} as string,\n\t\tEventType as string,\n\t\tBlockAssignment as (BlockRef as (ObjectRef as string, OperatingDayDate as string), BlockNumber as string),\n\t\tTransportMode as string,\n\t\tReportedByOrganizationId as string,\n\t\tVehicleRef as string,\n\t\tVehicleNumber as string,\n\t\tValidFromDateTime as string,\n\t\tCalls as (SequenceNumber as string, ArrivalState as string, DepartureState as string, ArrivalForecastDateTime as string, ArrivalObservedDateTime as string, DepartureForecastDateTime as string, DepartureObservedDateTime as string)[]\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false,\n\tdocumentForm: 'arrayOfDocuments',\n\tpartitionBy('hash', 1)) ~> sourceJson\nsourceJson select(mapColumn(\n\t\tForecastedAtJourneyPatternSequenceNumber,\n\t\tOnboardCountForecasts,\n\t\tOrganizationId,\n\t\tTimeStamps,\n\t\tpartitionKey,\n\t\tLastModifiedDateTime,\n\t\tid,\n\t\tType,\n\t\t{_rid},\n\t\t{_self},\n\t\t{_etag},\n\t\t{_attachments},\n\t\t{_ts},\n\t\t{JourneyRef.ObjectRef} = JourneyRef.ObjectRef,\n\t\t{JourneyRef.OperatingDayDate} = JourneyRef.OperatingDayDate\n\t),\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> Select1\nSelect1 sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tformat: 'parquet',\n\ttruncate: true,\n\tmapColumn(\n\t\tForecastedAtJourneyPatternSequenceNumber,\n\t\tOnboardCountForecasts,\n\t\tOrganizationId,\n\t\tTimeStamps,\n\t\tpartitionKey,\n\t\tLastModifiedDateTime,\n\t\tid,\n\t\tType,\n\t\t{_rid},\n\t\t{_self},\n\t\t{_etag},\n\t\t{_attachments},\n\t\t{_ts},\n\t\tJourneyRef_ObjectRef = {JourneyRef.ObjectRef},\n\t\tJourneyRef_OperatingDayDate = {JourneyRef.OperatingDayDate}\n\t),\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> sink1"
 				}
 			},
 			"dependsOn": [
