@@ -10,7 +10,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"folderPath": "Hogia/PARQUET/monitoredvehiclejourneysdomain/PassengerLoadForecasts",
+				"folderPath": "Hogia/PARQUET/monitoredvehiclejourneysdomain/MonitoredVehicleJourneys",
 				"fileSystem": "partners"
 			},
 			"compressionCodec": "snappy"
