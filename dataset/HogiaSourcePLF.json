@@ -1,0 +1,85 @@
+{
+	"name": "HogiaSourcePLF",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "HankyADLS",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "documents_for_partiton_265581f3-17e5-4d58-bba1-a97b00dfcf9690150120008001582021-02-11.json",
+				"folderPath": "Hogia/JSON/monitoredvehiclejourneysdomain/PassengerLoadForecasts",
+				"fileSystem": "partners"
+			}
+		},
+		"schema": {
+			"type": "object",
+			"properties": {
+				"ForecastedAtJourneyPatternSequenceNumber": {
+					"type": "integer"
+				},
+				"OnboardCountForecasts": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"JourneyPatternSequenceNumber": {
+								"type": "integer"
+							},
+							"OnboardCount": {
+								"type": "integer"
+							}
+						}
+					}
+				},
+				"OrganizationId": {
+					"type": "string"
+				},
+				"JourneyRef": {
+					"type": "object",
+					"properties": {
+						"ObjectRef": {
+							"type": "string"
+						},
+						"OperatingDayDate": {
+							"type": "string"
+						}
+					}
+				},
+				"TimeStamps": {
+					"type": "null"
+				},
+				"partitionKey": {
+					"type": "string"
+				},
+				"LastModifiedDateTime": {
+					"type": "string"
+				},
+				"id": {
+					"type": "string"
+				},
+				"Type": {
+					"type": "string"
+				},
+				"_rid": {
+					"type": "string"
+				},
+				"_self": {
+					"type": "string"
+				},
+				"_etag": {
+					"type": "string"
+				},
+				"_attachments": {
+					"type": "string"
+				},
+				"_ts": {
+					"type": "integer"
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,20 @@
+{
+	"name": "HogiaSinkPLF",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "HankyADLS",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"folderPath": "Hogia/PARQUET/monitoredvehiclejourneysdomain/PassengerLoadForecasts",
+				"fileSystem": "partners"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": []
+	}
+}
