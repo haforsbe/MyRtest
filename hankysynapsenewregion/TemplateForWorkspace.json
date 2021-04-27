@@ -2057,6 +2057,31 @@
 			]
 		},
 		{
+			"name": "[concat(parameters('workspaceName'), '/HogiaSinkPLF')]",
+			"type": "Microsoft.Synapse/workspaces/datasets",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "HankyADLS",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Parquet",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"folderPath": "Hogia/PARQUET/monitoredvehiclejourneysdomain/PassengerLoadForecasts",
+						"fileSystem": "partners"
+					},
+					"compressionCodec": "snappy"
+				},
+				"schema": []
+			},
+			"dependsOn": [
+				"[concat(variables('workspaceId'), '/linkedServices/HankyADLS')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('workspaceName'), '/HogiaSinkParquet')]",
 			"type": "Microsoft.Synapse/workspaces/datasets",
 			"apiVersion": "2019-06-01-preview",
@@ -2328,6 +2353,96 @@
 			]
 		},
 		{
+			"name": "[concat(parameters('workspaceName'), '/HogiaSourcePLF')]",
+			"type": "Microsoft.Synapse/workspaces/datasets",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "HankyADLS",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Json",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileName": "documents_for_partiton_265581f3-17e5-4d58-bba1-a97b00dfcf9690150120008001582021-02-11.json",
+						"folderPath": "Hogia/JSON/monitoredvehiclejourneysdomain/PassengerLoadForecasts",
+						"fileSystem": "partners"
+					}
+				},
+				"schema": {
+					"type": "object",
+					"properties": {
+						"ForecastedAtJourneyPatternSequenceNumber": {
+							"type": "integer"
+						},
+						"OnboardCountForecasts": {
+							"type": "array",
+							"items": {
+								"type": "object",
+								"properties": {
+									"JourneyPatternSequenceNumber": {
+										"type": "integer"
+									},
+									"OnboardCount": {
+										"type": "integer"
+									}
+								}
+							}
+						},
+						"OrganizationId": {
+							"type": "string"
+						},
+						"JourneyRef": {
+							"type": "object",
+							"properties": {
+								"ObjectRef": {
+									"type": "string"
+								},
+								"OperatingDayDate": {
+									"type": "string"
+								}
+							}
+						},
+						"TimeStamps": {
+							"type": "null"
+						},
+						"partitionKey": {
+							"type": "string"
+						},
+						"LastModifiedDateTime": {
+							"type": "string"
+						},
+						"id": {
+							"type": "string"
+						},
+						"Type": {
+							"type": "string"
+						},
+						"_rid": {
+							"type": "string"
+						},
+						"_self": {
+							"type": "string"
+						},
+						"_etag": {
+							"type": "string"
+						},
+						"_attachments": {
+							"type": "string"
+						},
+						"_ts": {
+							"type": "integer"
+						}
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('workspaceId'), '/linkedServices/HankyADLS')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('workspaceName'), '/SourceDataset_pvl')]",
 			"type": "Microsoft.Synapse/workspaces/datasets",
 			"apiVersion": "2019-06-01-preview",
@@ -2581,7 +2696,7 @@
 					"sources": [
 						{
 							"dataset": {
-								"referenceName": "HogiaSourceMVD",
+								"referenceName": "HogiaSourcePLF",
 								"type": "DatasetReference"
 							},
 							"name": "sourceJson"
@@ -2590,19 +2705,19 @@
 					"sinks": [
 						{
 							"dataset": {
-								"referenceName": "HogiaSinkMVD",
+								"referenceName": "HogiaSinkPLF",
 								"type": "DatasetReference"
 							},
 							"name": "sink1"
 						}
 					],
 					"transformations": [],
-					"script": "source(output(\n\t\tJourneyState as string,\n\t\tOrganizationId as string,\n\t\tJourneyRef as (ObjectRef as string, OperatingDayDate as string),\n\t\tTimeStamps as (TimeStamp as string, Name as string)[],\n\t\tpartitionKey as string,\n\t\tLastModifiedDateTime as string,\n\t\tttl as string,\n\t\tid as string,\n\t\tType as string,\n\t\t{_rid} as string,\n\t\t{_self} as string,\n\t\t{_etag} as string,\n\t\t{_attachments} as string,\n\t\t{_ts} as string,\n\t\tEventType as string,\n\t\tBlockAssignment as (BlockRef as (ObjectRef as string, OperatingDayDate as string), BlockNumber as string),\n\t\tTransportMode as string,\n\t\tReportedByOrganizationId as string,\n\t\tVehicleRef as string,\n\t\tVehicleNumber as string,\n\t\tValidFromDateTime as string,\n\t\tCalls as (SequenceNumber as string, ArrivalState as string, DepartureState as string, ArrivalForecastDateTime as string, ArrivalObservedDateTime as string, DepartureForecastDateTime as string, DepartureObservedDateTime as string)[]\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false,\n\tdocumentForm: 'arrayOfDocuments',\n\tpartitionBy('hash', 1)) ~> sourceJson\nsourceJson sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tformat: 'parquet',\n\ttruncate: true,\n\tmapColumn(\n\t\tJourneyState,\n\t\tOrganizationId,\n\t\tTimeStamps,\n\t\tpartitionKey,\n\t\tLastModifiedDateTime,\n\t\tttl,\n\t\tid,\n\t\tType,\n\t\t{_rid},\n\t\t{_self},\n\t\t{_etag},\n\t\t{_attachments},\n\t\t{_ts},\n\t\tEventType,\n\t\tBlockAssignment,\n\t\tTransportMode,\n\t\tReportedByOrganizationId,\n\t\tVehicleRef,\n\t\tVehicleNumber,\n\t\tValidFromDateTime,\n\t\tCalls,\n\t\tObjectRef = JourneyRef.ObjectRef,\n\t\tOperatingDayDate = JourneyRef.OperatingDayDate\n\t),\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> sink1"
+					"script": "source(output(\n\t\tForecastedAtJourneyPatternSequenceNumber as string,\n\t\tOnboardCountForecasts as (JourneyPatternSequenceNumber as string, OnboardCount as string)[],\n\t\tOrganizationId as string,\n\t\tJourneyRef as (ObjectRef as string, OperatingDayDate as string),\n\t\tTimeStamps as string,\n\t\tpartitionKey as string,\n\t\tLastModifiedDateTime as string,\n\t\tid as string,\n\t\tType as string,\n\t\t{_rid} as string,\n\t\t{_self} as string,\n\t\t{_etag} as string,\n\t\t{_attachments} as string,\n\t\t{_ts} as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false,\n\tdocumentForm: 'arrayOfDocuments',\n\tpartitionBy('hash', 1)) ~> sourceJson\nsourceJson sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tformat: 'parquet',\n\ttruncate: true,\n\tmapColumn(\n\t\tForecastedAtJourneyPatternSequenceNumber,\n\t\tOnboardCountForecasts,\n\t\tOrganizationId,\n\t\tTimeStamps,\n\t\tpartitionKey,\n\t\tLastModifiedDateTime,\n\t\tid,\n\t\tType,\n\t\t{_rid},\n\t\t{_self},\n\t\t{_etag},\n\t\t{_attachments},\n\t\t{_ts},\n\t\tObjectRef = JourneyRef.ObjectRef,\n\t\tOperatingDayDate = JourneyRef.OperatingDayDate\n\t),\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> sink1"
 				}
 			},
 			"dependsOn": [
-				"[concat(variables('workspaceId'), '/datasets/HogiaSourceMVD')]",
-				"[concat(variables('workspaceId'), '/datasets/HogiaSinkMVD')]"
+				"[concat(variables('workspaceId'), '/datasets/HogiaSourcePLF')]",
+				"[concat(variables('workspaceId'), '/datasets/HogiaSinkPLF')]"
 			]
 		},
 		{
@@ -5177,6 +5292,605 @@
 						"source": [
 							"%%pyspark\r\n",
 							"df = spark.read.load('abfss://partners@hankyadlsv2.dfs.core.windows.net/Hogia/PARQUET/monitoredvehiclejourneysdomain/PassengerLoadForecasts/part-00000-13580b42-d52d-4966-a2c6-fed465c6c30a-c000.snappy.parquet', format='parquet')\r\n",
+							"display(df.limit(10))"
+						],
+						"outputs": [],
+						"execution_count": 1
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('workspaceName'), '/Notebook 11')]",
+			"type": "Microsoft.Synapse/workspaces/notebooks",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"nbformat": 4,
+				"nbformat_minor": 2,
+				"bigDataPool": {
+					"referenceName": "testsparkpool",
+					"type": "BigDataPoolReference"
+				},
+				"sessionProperties": {
+					"driverMemory": "56g",
+					"driverCores": 8,
+					"executorMemory": "56g",
+					"executorCores": 8,
+					"numExecutors": 2,
+					"conf": {
+						"spark.dynamicAllocation.enabled": "false",
+						"spark.dynamicAllocation.minExecutors": "2",
+						"spark.dynamicAllocation.maxExecutors": "2"
+					}
+				},
+				"metadata": {
+					"saveOutput": true,
+					"synapse_widget": {
+						"version": "0.1",
+						"state": {
+							"dc191124-c538-4291-a43c-75f1b891eee9": {
+								"type": "Synapse.DataFrame",
+								"sync_state": {
+									"table": {
+										"rows": [
+											{
+												"_attachments": "attachments/",
+												"TimeStamps": [
+													{
+														"TimeStamp": "2021-02-11T08:39:39.4747329Z",
+														"Name": "RealTimeJourneyInfo"
+													},
+													{
+														"TimeStamp": "2021-02-11T08:39:41.2543259Z",
+														"Name": "EventHub DequeuedTime"
+													}
+												],
+												"partitionKey": "265581f3-17e5-4d58-bba1-a97b00dfcf96:9015012000800158:2021-02-11",
+												"JourneyState": "2",
+												"OrganizationId": "265581f3-17e5-4d58-bba1-a97b00dfcf96",
+												"id": "265581f3-17e5-4d58-bba1-a97b00dfcf96:9015012000800158:2021-02-11:state",
+												"_etag": "\"1d00d579-0000-0d00-0000-6024ed4e0000\"",
+												"_rid": "XXAwAOLTFxbBAc4CAAAACA==",
+												"OperatingDayDate": "2021-02-11T00:00:00",
+												"ttl": "432000",
+												"ObjectRef": "9015012000800158",
+												"_self": "dbs/XXAwAA==/colls/XXAwAOLTFxY=/docs/XXAwAOLTFxbBAc4CAAAACA==/",
+												"LastModifiedDateTime": "2021-02-11T08:39:41.2622675+00:00",
+												"Type": "Hogia.VehicleJourneyService.Domain.MonitoredVehicleJourneyState",
+												"_ts": "1613032782"
+											},
+											{
+												"_attachments": "attachments/",
+												"VehicleNumber": "3693",
+												"TimeStamps": [
+													{
+														"TimeStamp": "2021-02-11T12:41:09.1886542Z",
+														"Name": "RealTimeJourneyInfo"
+													},
+													{
+														"TimeStamp": "2021-02-11T12:41:09.530593Z",
+														"Name": "EventHub DequeuedTime"
+													}
+												],
+												"partitionKey": "265581f3-17e5-4d58-bba1-a97b00dfcf96:9015012000800158:2021-02-11",
+												"ReportedByOrganizationId": "d01cc5c2-b82a-42b2-b615-a38700e208f0",
+												"EventType": "2",
+												"ValidFromDateTime": "2021-02-11T13:40:00+01:00",
+												"OrganizationId": "265581f3-17e5-4d58-bba1-a97b00dfcf96",
+												"id": "265581f3-17e5-4d58-bba1-a97b00dfcf96:9015012000800158:2021-02-11:9031012002203693:assigned",
+												"BlockAssignment": {
+													"BlockRef": {
+														"ObjectRef": "9041012002210313",
+														"OperatingDayDate": "2021-02-11T00:00:00"
+													},
+													"BlockNumber": "10313"
+												},
+												"_etag": "\"2c00088d-0000-0d00-0000-602525e50000\"",
+												"_rid": "XXAwAOLTFxZP6dACAAAACA==",
+												"OperatingDayDate": "2021-02-11T00:00:00",
+												"TransportMode": "1",
+												"ttl": "432000",
+												"ObjectRef": "9015012000800158",
+												"VehicleRef": "9031012002203693",
+												"_self": "dbs/XXAwAA==/colls/XXAwAOLTFxY=/docs/XXAwAOLTFxZP6dACAAAACA==/",
+												"LastModifiedDateTime": "2021-02-11T12:41:09.5315797+00:00",
+												"Type": "Hogia.VehicleJourneyService.Domain.MonitoredVehicleJourneyAssigned",
+												"_ts": "1613047269"
+											},
+											{
+												"_attachments": "attachments/",
+												"VehicleNumber": "3693",
+												"TimeStamps": [
+													{
+														"TimeStamp": "2021-02-11T12:41:09.1886542Z",
+														"Name": "RealTimeJourneyInfo"
+													},
+													{
+														"TimeStamp": "2021-02-11T12:41:09.530593Z",
+														"Name": "EventHub DequeuedTime"
+													}
+												],
+												"partitionKey": "265581f3-17e5-4d58-bba1-a97b00dfcf96:9015012000800158:2021-02-11",
+												"ReportedByOrganizationId": "d01cc5c2-b82a-42b2-b615-a38700e208f0",
+												"EventType": "3",
+												"ValidFromDateTime": "2021-02-11T13:40:15+01:00",
+												"OrganizationId": "265581f3-17e5-4d58-bba1-a97b00dfcf96",
+												"id": "265581f3-17e5-4d58-bba1-a97b00dfcf96:9015012000800158:2021-02-11:9031012002203693:unassigned",
+												"_etag": "\"2c00128d-0000-0d00-0000-602525e50000\"",
+												"_rid": "XXAwAOLTFxZx6dACAAAACA==",
+												"OperatingDayDate": "2021-02-11T00:00:00",
+												"TransportMode": "0",
+												"ttl": "432000",
+												"ObjectRef": "9015012000800158",
+												"VehicleRef": "9031012002203693",
+												"_self": "dbs/XXAwAA==/colls/XXAwAOLTFxY=/docs/XXAwAOLTFxZx6dACAAAACA==/",
+												"LastModifiedDateTime": "2021-02-11T12:41:09.5315821+00:00",
+												"Type": "Hogia.VehicleJourneyService.Domain.MonitoredVehicleJourneyUnAssigned",
+												"_ts": "1613047269"
+											},
+											{
+												"_attachments": "attachments/",
+												"TimeStamps": [
+													{
+														"TimeStamp": "2021-02-11T12:41:06.8274169Z",
+														"Name": "RealTimeJourneyInfo"
+													},
+													{
+														"TimeStamp": "2021-02-11T12:41:07.2292372Z",
+														"Name": "EventHub DequeuedTime"
+													}
+												],
+												"partitionKey": "265581f3-17e5-4d58-bba1-a97b00dfcf96:9015012000800158:2021-02-11",
+												"EventType": "4",
+												"OrganizationId": "265581f3-17e5-4d58-bba1-a97b00dfcf96",
+												"id": "265581f3-17e5-4d58-bba1-a97b00dfcf96:9015012000800158:2021-02-11:journeyhasstarted",
+												"_etag": "\"2c005e8b-0000-0d00-0000-602525e30000\"",
+												"_rid": "XXAwAOLTFxb4ZdgCAAAACA==",
+												"OperatingDayDate": "2021-02-11T00:00:00",
+												"ttl": "432000",
+												"ObjectRef": "9015012000800158",
+												"_self": "dbs/XXAwAA==/colls/XXAwAOLTFxY=/docs/XXAwAOLTFxb4ZdgCAAAACA==/",
+												"LastModifiedDateTime": "2021-02-11T12:41:07.2296482+00:00",
+												"Type": "Hogia.VehicleJourneyService.Domain.MonitoredVehicleJourneyHasStarted",
+												"_ts": "1613047267"
+											},
+											{
+												"_attachments": "attachments/",
+												"TimeStamps": [
+													{
+														"TimeStamp": "2021-02-11T12:41:06.8274169Z",
+														"Name": "RealTimeJourneyInfo"
+													},
+													{
+														"TimeStamp": "2021-02-11T12:41:07.9401557Z",
+														"Name": "EventHub DequeuedTime"
+													}
+												],
+												"partitionKey": "265581f3-17e5-4d58-bba1-a97b00dfcf96:9015012000800158:2021-02-11",
+												"OrganizationId": "265581f3-17e5-4d58-bba1-a97b00dfcf96",
+												"id": "1148c99f-aa4c-4efe-9f79-6cd18a4f6a36",
+												"_etag": "\"2c00768b-0000-0d00-0000-602525e30000\"",
+												"_rid": "XXAwAOLTFxYAZtgCAAAACA==",
+												"Calls": [
+													{
+														"ArrivalObservedDateTime": "2021-02-11T13:40:32+01:00",
+														"ArrivalState": "6",
+														"SequenceNumber": "2",
+														"ArrivalForecastDateTime": "2021-02-11T13:42:11+01:00",
+														"DepartureForecastDateTime": "2021-02-11T13:42:11+01:00",
+														"DepartureState": "2",
+														"DepartureObservedDateTime": "2021-02-11T14:10:55+01:00"
+													}
+												],
+												"OperatingDayDate": "2021-02-11T00:00:00",
+												"ttl": "432000",
+												"ObjectRef": "9015012000800158",
+												"_self": "dbs/XXAwAA==/colls/XXAwAOLTFxY=/docs/XXAwAOLTFxYAZtgCAAAACA==/",
+												"LastModifiedDateTime": "2021-02-11T12:41:07.9406415+00:00",
+												"Type": "Hogia.VehicleJourneyService.Domain.MonitoredVehicleJourneyProgressUpdate",
+												"_ts": "1613047267"
+											},
+											{
+												"_attachments": "attachments/",
+												"TimeStamps": [
+													{
+														"TimeStamp": "2021-02-11T12:41:08.27749Z",
+														"Name": "RealTimeJourneyInfo"
+													},
+													{
+														"TimeStamp": "2021-02-11T12:41:08.6580992Z",
+														"Name": "EventHub DequeuedTime"
+													}
+												],
+												"partitionKey": "265581f3-17e5-4d58-bba1-a97b00dfcf96:9015012000800158:2021-02-11",
+												"OrganizationId": "265581f3-17e5-4d58-bba1-a97b00dfcf96",
+												"id": "c327703b-df75-40f1-bc79-fdf7eb07cf58",
+												"_etag": "\"2c001b8c-0000-0d00-0000-602525e40000\"",
+												"_rid": "XXAwAOLTFxZyZtgCAAAACA==",
+												"Calls": [
+													{
+														"ArrivalObservedDateTime": "2021-02-11T14:10:55+01:00",
+														"ArrivalState": "11",
+														"SequenceNumber": "1",
+														"ArrivalForecastDateTime": "2021-02-11T13:42:11+01:00",
+														"DepartureForecastDateTime": "2021-02-11T13:40:00+01:00",
+														"DepartureState": "2",
+														"DepartureObservedDateTime": "2021-02-11T14:10:55+01:00"
+													}
+												],
+												"OperatingDayDate": "2021-02-11T00:00:00",
+												"ttl": "432000",
+												"ObjectRef": "9015012000800158",
+												"_self": "dbs/XXAwAA==/colls/XXAwAOLTFxY=/docs/XXAwAOLTFxZyZtgCAAAACA==/",
+												"LastModifiedDateTime": "2021-02-11T12:41:08.6582112+00:00",
+												"Type": "Hogia.VehicleJourneyService.Domain.MonitoredVehicleJourneyProgressUpdate",
+												"_ts": "1613047268"
+											},
+											{
+												"_attachments": "attachments/",
+												"TimeStamps": [
+													{
+														"TimeStamp": "2021-02-11T12:41:08.5480254Z",
+														"Name": "RealTimeJourneyInfo"
+													},
+													{
+														"TimeStamp": "2021-02-11T12:41:08.9261435Z",
+														"Name": "EventHub DequeuedTime"
+													}
+												],
+												"partitionKey": "265581f3-17e5-4d58-bba1-a97b00dfcf96:9015012000800158:2021-02-11",
+												"OrganizationId": "265581f3-17e5-4d58-bba1-a97b00dfcf96",
+												"id": "0f203878-04fc-480b-96fc-5d48f11202fd",
+												"_etag": "\"2c004f8c-0000-0d00-0000-602525e40000\"",
+												"_rid": "XXAwAOLTFxaTZtgCAAAACA==",
+												"Calls": [
+													{
+														"ArrivalObservedDateTime": "2021-02-11T14:10:55+01:00",
+														"ArrivalState": "11",
+														"SequenceNumber": "1",
+														"ArrivalForecastDateTime": "2021-02-11T13:42:11+01:00",
+														"DepartureForecastDateTime": "2021-02-11T13:40:00+01:00",
+														"DepartureState": "11",
+														"DepartureObservedDateTime": "2021-02-11T14:10:55+01:00"
+													}
+												],
+												"OperatingDayDate": "2021-02-11T00:00:00",
+												"ttl": "432000",
+												"ObjectRef": "9015012000800158",
+												"_self": "dbs/XXAwAA==/colls/XXAwAOLTFxY=/docs/XXAwAOLTFxaTZtgCAAAACA==/",
+												"LastModifiedDateTime": "2021-02-11T12:41:08.9265077+00:00",
+												"Type": "Hogia.VehicleJourneyService.Domain.MonitoredVehicleJourneyProgressUpdate",
+												"_ts": "1613047268"
+											},
+											{
+												"_attachments": "attachments/",
+												"VehicleNumber": "3693",
+												"TimeStamps": [
+													{
+														"TimeStamp": "2021-02-11T13:14:15.7047501Z",
+														"Name": "RealTimeJourneyInfo"
+													},
+													{
+														"TimeStamp": "2021-02-11T13:14:16.0446056Z",
+														"Name": "EventHub DequeuedTime"
+													}
+												],
+												"partitionKey": "265581f3-17e5-4d58-bba1-a97b00dfcf96:9015012000800158:2021-02-11",
+												"ReportedByOrganizationId": "d01cc5c2-b82a-42b2-b615-a38700e208f0",
+												"EventType": "0",
+												"ValidFromDateTime": "2021-02-11T13:40:15+01:00",
+												"OrganizationId": "265581f3-17e5-4d58-bba1-a97b00dfcf96",
+												"id": "265581f3-17e5-4d58-bba1-a97b00dfcf96:9015012000800158:2021-02-11:9031012002203693:signedon",
+												"BlockAssignment": {
+													"BlockRef": {
+														"ObjectRef": "9041012002210313",
+														"OperatingDayDate": "2021-02-11T00:00:00"
+													},
+													"BlockNumber": "10313"
+												},
+												"_etag": "\"2e002eea-0000-0d00-0000-60252da80000\"",
+												"_rid": "XXAwAOLTFxYTZ9gCAAAACA==",
+												"OperatingDayDate": "2021-02-11T00:00:00",
+												"TransportMode": "1",
+												"ttl": "432000",
+												"ObjectRef": "9015012000800158",
+												"VehicleRef": "9031012002203693",
+												"_self": "dbs/XXAwAA==/colls/XXAwAOLTFxY=/docs/XXAwAOLTFxYTZ9gCAAAACA==/",
+												"LastModifiedDateTime": "2021-02-11T13:14:16.0456071+00:00",
+												"Type": "Hogia.VehicleJourneyService.Domain.MonitoredVehicleJourneySignedOn",
+												"_ts": "1613049256"
+											},
+											{
+												"_attachments": "attachments/",
+												"TimeStamps": [
+													{
+														"TimeStamp": "2021-02-11T12:41:21.8152599Z",
+														"Name": "RealTimeJourneyInfo"
+													},
+													{
+														"TimeStamp": "2021-02-11T12:41:22.1474748Z",
+														"Name": "EventHub DequeuedTime"
+													}
+												],
+												"partitionKey": "265581f3-17e5-4d58-bba1-a97b00dfcf96:9015012000800158:2021-02-11",
+												"OrganizationId": "265581f3-17e5-4d58-bba1-a97b00dfcf96",
+												"id": "86fdff17-555e-4a4b-bfd3-15510055c30a",
+												"_etag": "\"2c00c391-0000-0d00-0000-602525f20000\"",
+												"_rid": "XXAwAOLTFxbhadgCAAAACA==",
+												"Calls": [
+													{
+														"ArrivalObservedDateTime": "2021-02-11T13:40:32+01:00",
+														"ArrivalState": "6",
+														"SequenceNumber": "2",
+														"ArrivalForecastDateTime": "2021-02-11T13:42:11+01:00",
+														"DepartureForecastDateTime": "2021-02-11T13:42:11+01:00",
+														"DepartureState": "9",
+														"DepartureObservedDateTime": "2021-02-11T13:41:20+01:00"
+													}
+												],
+												"OperatingDayDate": "2021-02-11T00:00:00",
+												"ttl": "432000",
+												"ObjectRef": "9015012000800158",
+												"_self": "dbs/XXAwAA==/colls/XXAwAOLTFxY=/docs/XXAwAOLTFxbhadgCAAAACA==/",
+												"LastModifiedDateTime": "2021-02-11T12:41:22.1476192+00:00",
+												"Type": "Hogia.VehicleJourneyService.Domain.MonitoredVehicleJourneyProgressUpdate",
+												"_ts": "1613047282"
+											},
+											{
+												"_attachments": "attachments/",
+												"TimeStamps": [
+													{
+														"TimeStamp": "2021-02-11T12:41:22.3782033Z",
+														"Name": "RealTimeJourneyInfo"
+													},
+													{
+														"TimeStamp": "2021-02-11T12:41:22.7546796Z",
+														"Name": "EventHub DequeuedTime"
+													}
+												],
+												"partitionKey": "265581f3-17e5-4d58-bba1-a97b00dfcf96:9015012000800158:2021-02-11",
+												"OrganizationId": "265581f3-17e5-4d58-bba1-a97b00dfcf96",
+												"id": "b247e66f-1af6-4f93-8cb2-c2984e95162f",
+												"_etag": "\"2c00e391-0000-0d00-0000-602525f20000\"",
+												"_rid": "XXAwAOLTFxb1adgCAAAACA==",
+												"Calls": [
+													{
+														"ArrivalObservedDateTime": "2021-02-11T14:10:55+01:00",
+														"ArrivalState": "2",
+														"SequenceNumber": "17",
+														"ArrivalForecastDateTime": "2021-02-11T14:08:11+01:00",
+														"DepartureForecastDateTime": "2021-02-11T14:08:33+01:00",
+														"DepartureState": "2",
+														"DepartureObservedDateTime": "2021-02-11T14:10:55+01:00"
+													},
+													{
+														"ArrivalObservedDateTime": "2021-02-11T14:10:55+01:00",
+														"ArrivalState": "2",
+														"SequenceNumber": "12",
+														"ArrivalForecastDateTime": "2021-02-11T14:03:13+01:00",
+														"DepartureForecastDateTime": "2021-02-11T14:03:40+01:00",
+														"DepartureState": "2",
+														"DepartureObservedDateTime": "2021-02-11T14:10:55+01:00"
+													},
+													{
+														"ArrivalObservedDateTime": "2021-02-11T14:10:55+01:00",
+														"ArrivalState": "2",
+														"SequenceNumber": "16",
+														"ArrivalForecastDateTime": "2021-02-11T14:07:19+01:00",
+														"DepartureForecastDateTime": "2021-02-11T14:07:33+01:00",
+														"DepartureState": "2",
+														"DepartureObservedDateTime": "2021-02-11T14:10:55+01:00"
+													},
+													{
+														"ArrivalObservedDateTime": "2021-02-11T14:10:55+01:00",
+														"ArrivalState": "2",
+														"SequenceNumber": "11",
+														"ArrivalForecastDateTime": "2021-02-11T14:02:12+01:00",
+														"DepartureForecastDateTime": "2021-02-11T14:02:35+01:00",
+														"DepartureState": "2",
+														"DepartureObservedDateTime": "2021-02-11T14:10:55+01:00"
+													},
+													{
+														"ArrivalObservedDateTime": "2021-02-11T14:10:55+01:00",
+														"ArrivalState": "2",
+														"SequenceNumber": "13",
+														"ArrivalForecastDateTime": "2021-02-11T14:04:35+01:00",
+														"DepartureForecastDateTime": "2021-02-11T14:04:53+01:00",
+														"DepartureState": "2",
+														"DepartureObservedDateTime": "2021-02-11T14:10:55+01:00"
+													},
+													{
+														"ArrivalObservedDateTime": "2021-02-11T14:10:55+01:00",
+														"ArrivalState": "2",
+														"SequenceNumber": "9",
+														"ArrivalForecastDateTime": "2021-02-11T13:57:22+01:00",
+														"DepartureForecastDateTime": "2021-02-11T13:57:58+01:00",
+														"DepartureState": "2",
+														"DepartureObservedDateTime": "2021-02-11T14:10:55+01:00"
+													},
+													{
+														"ArrivalObservedDateTime": "2021-02-11T14:10:55+01:00",
+														"ArrivalState": "2",
+														"SequenceNumber": "5",
+														"ArrivalForecastDateTime": "2021-02-11T13:49:17+01:00",
+														"DepartureForecastDateTime": "2021-02-11T13:49:58+01:00",
+														"DepartureState": "2",
+														"DepartureObservedDateTime": "2021-02-11T14:10:55+01:00"
+													},
+													{
+														"ArrivalObservedDateTime": "2021-02-11T14:10:55+01:00",
+														"ArrivalState": "2",
+														"SequenceNumber": "18",
+														"ArrivalForecastDateTime": "2021-02-11T14:09:39+01:00",
+														"DepartureForecastDateTime": "2021-02-11T14:09:18+01:00",
+														"DepartureState": "2",
+														"DepartureObservedDateTime": "2021-02-11T14:10:55+01:00"
+													},
+													{
+														"ArrivalObservedDateTime": "2021-02-11T14:10:55+01:00",
+														"ArrivalState": "2",
+														"SequenceNumber": "10",
+														"ArrivalForecastDateTime": "2021-02-11T14:00:09+01:00",
+														"DepartureForecastDateTime": "2021-02-11T14:00:30+01:00",
+														"DepartureState": "2",
+														"DepartureObservedDateTime": "2021-02-11T14:10:55+01:00"
+													},
+													{
+														"ArrivalObservedDateTime": "2021-02-11T14:10:55+01:00",
+														"ArrivalState": "2",
+														"SequenceNumber": "15",
+														"ArrivalForecastDateTime": "2021-02-11T14:06:26+01:00",
+														"DepartureForecastDateTime": "2021-02-11T14:06:49+01:00",
+														"DepartureState": "2",
+														"DepartureObservedDateTime": "2021-02-11T14:10:55+01:00"
+													},
+													{
+														"ArrivalObservedDateTime": "2021-02-11T14:10:55+01:00",
+														"ArrivalState": "2",
+														"SequenceNumber": "14",
+														"ArrivalForecastDateTime": "2021-02-11T14:05:33+01:00",
+														"DepartureForecastDateTime": "2021-02-11T14:05:57+01:00",
+														"DepartureState": "2",
+														"DepartureObservedDateTime": "2021-02-11T14:10:55+01:00"
+													},
+													{
+														"ArrivalObservedDateTime": "2021-02-11T14:10:55+01:00",
+														"ArrivalState": "2",
+														"SequenceNumber": "4",
+														"ArrivalForecastDateTime": "2021-02-11T13:47:29+01:00",
+														"DepartureForecastDateTime": "2021-02-11T13:47:47+01:00",
+														"DepartureState": "2",
+														"DepartureObservedDateTime": "2021-02-11T14:10:55+01:00"
+													},
+													{
+														"ArrivalObservedDateTime": "2021-02-11T14:10:55+01:00",
+														"ArrivalState": "2",
+														"SequenceNumber": "6",
+														"ArrivalForecastDateTime": "2021-02-11T13:51:35+01:00",
+														"DepartureForecastDateTime": "2021-02-11T13:52:01+01:00",
+														"DepartureState": "2",
+														"DepartureObservedDateTime": "2021-02-11T14:10:55+01:00"
+													},
+													{
+														"ArrivalObservedDateTime": "2021-02-11T14:10:55+01:00",
+														"ArrivalState": "2",
+														"SequenceNumber": "3",
+														"ArrivalForecastDateTime": "2021-02-11T13:43:49+01:00",
+														"DepartureForecastDateTime": "2021-02-11T13:45:57+01:00",
+														"DepartureState": "2",
+														"DepartureObservedDateTime": "2021-02-11T14:10:55+01:00"
+													},
+													{
+														"ArrivalObservedDateTime": "2021-02-11T14:10:55+01:00",
+														"ArrivalState": "2",
+														"SequenceNumber": "7",
+														"ArrivalForecastDateTime": "2021-02-11T13:53:38+01:00",
+														"DepartureForecastDateTime": "2021-02-11T13:54:43+01:00",
+														"DepartureState": "2",
+														"DepartureObservedDateTime": "2021-02-11T14:10:55+01:00"
+													},
+													{
+														"ArrivalObservedDateTime": "2021-02-11T14:10:55+01:00",
+														"ArrivalState": "2",
+														"SequenceNumber": "8",
+														"ArrivalForecastDateTime": "2021-02-11T13:55:35+01:00",
+														"DepartureForecastDateTime": "2021-02-11T13:56:07+01:00",
+														"DepartureState": "2",
+														"DepartureObservedDateTime": "2021-02-11T14:10:55+01:00"
+													}
+												],
+												"OperatingDayDate": "2021-02-11T00:00:00",
+												"ttl": "432000",
+												"ObjectRef": "9015012000800158",
+												"_self": "dbs/XXAwAA==/colls/XXAwAOLTFxY=/docs/XXAwAOLTFxb1adgCAAAACA==/",
+												"LastModifiedDateTime": "2021-02-11T12:41:22.7548903+00:00",
+												"Type": "Hogia.VehicleJourneyService.Domain.MonitoredVehicleJourneyProgressUpdate",
+												"_ts": "1613047282"
+											}
+										],
+										"schema": {
+											"JourneyState": "string",
+											"OrganizationId": "string",
+											"TimeStamps": "ArrayType(StructType(StructField(TimeStamp,StringType,true), StructField(Name,StringType,true)),true)",
+											"partitionKey": "string",
+											"LastModifiedDateTime": "string",
+											"ttl": "string",
+											"id": "string",
+											"Type": "string",
+											"_rid": "string",
+											"_self": "string",
+											"_etag": "string",
+											"_attachments": "string",
+											"_ts": "string",
+											"EventType": "string",
+											"BlockAssignment": "StructType(StructField(BlockRef,StructType(StructField(ObjectRef,StringType,true), StructField(OperatingDayDate,StringType,true)),true), StructField(BlockNumber,StringType,true))",
+											"TransportMode": "string",
+											"ReportedByOrganizationId": "string",
+											"VehicleRef": "string",
+											"VehicleNumber": "string",
+											"ValidFromDateTime": "string",
+											"Calls": "ArrayType(StructType(StructField(SequenceNumber,StringType,true), StructField(ArrivalState,StringType,true), StructField(DepartureState,StringType,true), StructField(ArrivalForecastDateTime,StringType,true), StructField(ArrivalObservedDateTime,StringType,true), StructField(DepartureForecastDateTime,StringType,true), StructField(DepartureObservedDateTime,StringType,true)),true)",
+											"ObjectRef": "string",
+											"OperatingDayDate": "string"
+										}
+									},
+									"isSummary": false,
+									"language": "scala"
+								},
+								"persist_state": {
+									"view": {
+										"type": "details",
+										"chartOptions": {
+											"chartType": "bar",
+											"aggregationType": "count",
+											"categoryFieldKeys": [
+												"JourneyState"
+											],
+											"seriesFieldKeys": [
+												"JourneyState"
+											],
+											"isStacked": false
+										}
+									}
+								}
+							}
+						}
+					},
+					"kernelspec": {
+						"name": "synapse_pyspark",
+						"display_name": "Synapse PySpark"
+					},
+					"language_info": {
+						"name": "python"
+					},
+					"a365ComputeOptions": {
+						"id": "/subscriptions/50b4f404-928c-4278-87e8-784d04814a4c/resourceGroups/hankysynapsenewregion/providers/Microsoft.Synapse/workspaces/hankysynapsenewregion/bigDataPools/testsparkpool",
+						"name": "testsparkpool",
+						"type": "Spark",
+						"endpoint": "https://hankysynapsenewregion.dev.azuresynapse.net/livyApi/versions/2019-11-01-preview/sparkPools/testsparkpool",
+						"auth": {
+							"type": "AAD",
+							"authResource": "https://dev.azuresynapse.net"
+						},
+						"sparkVersion": "2.4",
+						"nodeCount": 10,
+						"cores": 8,
+						"memory": 56
+					}
+				},
+				"cells": [
+					{
+						"cell_type": "code",
+						"metadata": {
+							"microsoft": {
+								"language": "python"
+							},
+							"collapsed": false
+						},
+						"source": [
+							"%%pyspark\r\n",
+							"df = spark.read.load('abfss://partners@hankyadlsv2.dfs.core.windows.net/Hogia/PARQUET/monitoredvehiclejourneysdomain/MonitoredVehicleJourneys/part-00000-98b2357b-97ef-4955-a2d6-6083106421b6-c000.snappy.parquet', format='parquet')\r\n",
 							"display(df.limit(10))"
 						],
 						"outputs": [],
