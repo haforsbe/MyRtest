@@ -117,7 +117,21 @@
 							"outputs": [
 								{
 									"referenceName": "BinaryDataSource_File",
-									"type": "DatasetReference"
+									"type": "DatasetReference",
+									"parameters": {
+										"Container": {
+											"value": "@pipeline().parameters.DestinationStore_Directory",
+											"type": "Expression"
+										},
+										"Directory": {
+											"value": "@pipeline().parameters.DestinationStore_Location",
+											"type": "Expression"
+										},
+										"filename": {
+											"value": "@activity('FilterFiles').output",
+											"type": "Expression"
+										}
+									}
 								}
 							]
 						},
