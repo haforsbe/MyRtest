@@ -1,0 +1,144 @@
+{
+	"name": "2655source",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "HankyADLS",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "document_for_partiton_2021-02-119015012000800158.json",
+				"folderPath": "Hogia/JSON/vehiclejourneysdomain/265581f3-17e5-4d58-bba1-a97b00dfcf96",
+				"fileSystem": "partners"
+			}
+		},
+		"schema": {
+			"type": "object",
+			"properties": {
+				"Calls": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"SequenceNumber": {
+								"type": "integer"
+							},
+							"JourneyPatternPointRef": {
+								"type": "string"
+							},
+							"IsTimingPoint": {
+								"type": "boolean"
+							},
+							"DepartureTimetabledEarliestDateTime": {
+								"type": "string"
+							},
+							"ArrivalTimetabledLatestDateTime": {
+								"type": "string"
+							}
+						}
+					}
+				},
+				"JourneyNumber": {
+					"type": "integer"
+				},
+				"OriginName": {
+					"type": "string"
+				},
+				"PrimaryDestinationName": {
+					"type": "string"
+				},
+				"SecondaryDestinationName": {
+					"type": "string"
+				},
+				"SecondaryDestinationType": {
+					"type": "integer"
+				},
+				"TransportMode": {
+					"type": "integer"
+				},
+				"ContractorOrganizationId": {
+					"type": "string"
+				},
+				"TimetabledStartDateTime": {
+					"type": "string"
+				},
+				"TimetabledEndDateTime": {
+					"type": "string"
+				},
+				"LineRef": {
+					"type": "string"
+				},
+				"DirectionOfLineRef": {
+					"type": "string"
+				},
+				"JourneyPatternRef": {
+					"type": "string"
+				},
+				"AdvanceOrderCondition": {
+					"type": "null"
+				},
+				"JourneyCreationParameters": {
+					"type": "null"
+				},
+				"JourneyRef": {
+					"type": "object",
+					"properties": {
+						"ObjectRef": {
+							"type": "string"
+						},
+						"OperatingDayDate": {
+							"type": "string"
+						}
+					}
+				},
+				"TimeStamps": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"TimeStamp": {
+								"type": "string"
+							},
+							"Name": {
+								"type": "string"
+							}
+						}
+					}
+				},
+				"partitionKey": {
+					"type": "string"
+				},
+				"LastModifiedDateTime": {
+					"type": "string"
+				},
+				"ttl": {
+					"type": "integer"
+				},
+				"id": {
+					"type": "string"
+				},
+				"Type": {
+					"type": "string"
+				},
+				"_rid": {
+					"type": "string"
+				},
+				"_self": {
+					"type": "string"
+				},
+				"_etag": {
+					"type": "string"
+				},
+				"_attachments": {
+					"type": "string"
+				},
+				"_ts": {
+					"type": "integer"
+				}
+			}
+		}
+	}
+}
