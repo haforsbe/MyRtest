@@ -77,6 +77,52 @@
 	},
 	"resources": [
 		{
+			"name": "[concat(parameters('workspaceName'), '/2655')]",
+			"type": "Microsoft.Synapse/workspaces/pipelines",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"activities": [
+					{
+						"name": "2655",
+						"type": "ExecuteDataFlow",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"dataflow": {
+								"referenceName": "Dataflow1",
+								"type": "DataFlowReference",
+								"parameters": {},
+								"datasetParameters": {
+									"source1": {},
+									"sink1": {}
+								}
+							},
+							"staging": {},
+							"compute": {
+								"coreCount": 8,
+								"computeType": "General"
+							},
+							"traceLevel": "Fine"
+						}
+					}
+				],
+				"folder": {
+					"name": "Partners/Hogia"
+				},
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('workspaceId'), '/dataflows/Dataflow1')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('workspaceName'), '/CopyPipeline_training')]",
 			"type": "Microsoft.Synapse/workspaces/pipelines",
 			"apiVersion": "2019-06-01-preview",
@@ -1889,6 +1935,180 @@
 			]
 		},
 		{
+			"name": "[concat(parameters('workspaceName'), '/2655sink')]",
+			"type": "Microsoft.Synapse/workspaces/datasets",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "HankyADLS",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Parquet",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"folderPath": "Hogia/PARQUET/vehiclejourneysdomain/265581f3-17e5-4d58-bba1-a97b00dfcf96",
+						"fileSystem": "partners"
+					},
+					"compressionCodec": "snappy"
+				},
+				"schema": []
+			},
+			"dependsOn": [
+				"[concat(variables('workspaceId'), '/linkedServices/HankyADLS')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('workspaceName'), '/2655source')]",
+			"type": "Microsoft.Synapse/workspaces/datasets",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "HankyADLS",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "Json",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileName": "document_for_partiton_2021-02-119015012000800158.json",
+						"folderPath": "Hogia/JSON/vehiclejourneysdomain/265581f3-17e5-4d58-bba1-a97b00dfcf96",
+						"fileSystem": "partners"
+					}
+				},
+				"schema": {
+					"type": "object",
+					"properties": {
+						"Calls": {
+							"type": "array",
+							"items": {
+								"type": "object",
+								"properties": {
+									"SequenceNumber": {
+										"type": "integer"
+									},
+									"JourneyPatternPointRef": {
+										"type": "string"
+									},
+									"IsTimingPoint": {
+										"type": "boolean"
+									},
+									"DepartureTimetabledEarliestDateTime": {
+										"type": "string"
+									},
+									"ArrivalTimetabledLatestDateTime": {
+										"type": "string"
+									}
+								}
+							}
+						},
+						"JourneyNumber": {
+							"type": "integer"
+						},
+						"OriginName": {
+							"type": "string"
+						},
+						"PrimaryDestinationName": {
+							"type": "string"
+						},
+						"SecondaryDestinationName": {
+							"type": "string"
+						},
+						"SecondaryDestinationType": {
+							"type": "integer"
+						},
+						"TransportMode": {
+							"type": "integer"
+						},
+						"ContractorOrganizationId": {
+							"type": "string"
+						},
+						"TimetabledStartDateTime": {
+							"type": "string"
+						},
+						"TimetabledEndDateTime": {
+							"type": "string"
+						},
+						"LineRef": {
+							"type": "string"
+						},
+						"DirectionOfLineRef": {
+							"type": "string"
+						},
+						"JourneyPatternRef": {
+							"type": "string"
+						},
+						"AdvanceOrderCondition": {
+							"type": "null"
+						},
+						"JourneyCreationParameters": {
+							"type": "null"
+						},
+						"JourneyRef": {
+							"type": "object",
+							"properties": {
+								"ObjectRef": {
+									"type": "string"
+								},
+								"OperatingDayDate": {
+									"type": "string"
+								}
+							}
+						},
+						"TimeStamps": {
+							"type": "array",
+							"items": {
+								"type": "object",
+								"properties": {
+									"TimeStamp": {
+										"type": "string"
+									},
+									"Name": {
+										"type": "string"
+									}
+								}
+							}
+						},
+						"partitionKey": {
+							"type": "string"
+						},
+						"LastModifiedDateTime": {
+							"type": "string"
+						},
+						"ttl": {
+							"type": "integer"
+						},
+						"id": {
+							"type": "string"
+						},
+						"Type": {
+							"type": "string"
+						},
+						"_rid": {
+							"type": "string"
+						},
+						"_self": {
+							"type": "string"
+						},
+						"_etag": {
+							"type": "string"
+						},
+						"_attachments": {
+							"type": "string"
+						},
+						"_ts": {
+							"type": "integer"
+						}
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('workspaceId'), '/linkedServices/HankyADLS')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('workspaceName'), '/BinaryDataSource_File')]",
 			"type": "Microsoft.Synapse/workspaces/datasets",
 			"apiVersion": "2019-06-01-preview",
@@ -2858,6 +3078,40 @@
 				}
 			},
 			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('workspaceName'), '/Dataflow1')]",
+			"type": "Microsoft.Synapse/workspaces/dataflows",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"type": "MappingDataFlow",
+				"typeProperties": {
+					"sources": [
+						{
+							"dataset": {
+								"referenceName": "2655source",
+								"type": "DatasetReference"
+							},
+							"name": "source1"
+						}
+					],
+					"sinks": [
+						{
+							"dataset": {
+								"referenceName": "2655sink",
+								"type": "DatasetReference"
+							},
+							"name": "sink1"
+						}
+					],
+					"transformations": [],
+					"script": "source(output(\n\t\tCalls as (SequenceNumber as string, JourneyPatternPointRef as string, IsTimingPoint as boolean, DepartureTimetabledEarliestDateTime as string, ArrivalTimetabledLatestDateTime as string)[],\n\t\tJourneyNumber as string,\n\t\tOriginName as string,\n\t\tPrimaryDestinationName as string,\n\t\tSecondaryDestinationName as string,\n\t\tSecondaryDestinationType as string,\n\t\tTransportMode as string,\n\t\tContractorOrganizationId as string,\n\t\tTimetabledStartDateTime as string,\n\t\tTimetabledEndDateTime as string,\n\t\tLineRef as string,\n\t\tDirectionOfLineRef as string,\n\t\tJourneyPatternRef as string,\n\t\tAdvanceOrderCondition as string,\n\t\tJourneyCreationParameters as string,\n\t\tJourneyRef as (ObjectRef as string, OperatingDayDate as string),\n\t\tTimeStamps as (TimeStamp as string, Name as string)[],\n\t\tpartitionKey as string,\n\t\tLastModifiedDateTime as string,\n\t\tttl as string,\n\t\tid as string,\n\t\tType as string,\n\t\t{_rid} as string,\n\t\t{_self} as string,\n\t\t{_etag} as string,\n\t\t{_attachments} as string,\n\t\t{_ts} as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false,\n\tdocumentForm: 'documentPerLine') ~> source1\nsource1 sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tformat: 'parquet',\n\tmapColumn(\n\t\tCalls,\n\t\tJourneyNumber,\n\t\tOriginName,\n\t\tPrimaryDestinationName,\n\t\tSecondaryDestinationName,\n\t\tSecondaryDestinationType,\n\t\tTransportMode,\n\t\tContractorOrganizationId,\n\t\tTimetabledStartDateTime,\n\t\tTimetabledEndDateTime,\n\t\tLineRef,\n\t\tDirectionOfLineRef,\n\t\tJourneyPatternRef,\n\t\tAdvanceOrderCondition,\n\t\tJourneyCreationParameters,\n\t\tJourneyRef,\n\t\tTimeStamps,\n\t\tpartitionKey,\n\t\tLastModifiedDateTime,\n\t\tttl,\n\t\tid,\n\t\tType,\n\t\t{_rid},\n\t\t{_self},\n\t\t{_etag},\n\t\t{_attachments},\n\t\t{_ts},\n\t\tObjectRef = JourneyRef.ObjectRef,\n\t\tOperatingDayDate = JourneyRef.OperatingDayDate\n\t),\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> sink1"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('workspaceId'), '/datasets/2655source')]",
+				"[concat(variables('workspaceId'), '/datasets/2655sink')]"
+			]
 		},
 		{
 			"name": "[concat(parameters('workspaceName'), '/MonitoredVehicleJourneys')]",
@@ -12981,43 +13235,6 @@
 			},
 			"dependsOn": [],
 			"location": "westeurope"
-		},
-		{
-			"name": "[concat(parameters('workspaceName'), '/2655')]",
-			"type": "Microsoft.Synapse/workspaces/pipelines",
-			"apiVersion": "2019-06-01-preview",
-			"properties": {
-				"activities": [
-					{
-						"name": "2",
-						"type": "ExecuteDataFlow",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "7.00:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"staging": {},
-							"compute": {
-								"coreCount": 8,
-								"computeType": "General"
-							},
-							"traceLevel": "Fine"
-						}
-					}
-				],
-				"folder": {
-					"name": "Partners/Hogia"
-				},
-				"annotations": []
-			},
-			"dependsOn": [
-				"[concat(variables('workspaceId'), '/integrationRuntimes/AutoResolveIntegrationRuntime')]"
-			]
 		}
 	]
 }
