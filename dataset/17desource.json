@@ -10,8 +10,8 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": "document_for_partiton_2021-02-079015150501000012.json",
-				"folderPath": "Hogia/JSON/vehiclejourneysdomain/17de1786-0844-48db-bb67-a8e300e7a955",
+				"fileName": "document_for_partiton_2021-02-119015012000800158.json",
+				"folderPath": "Hogia/JSON/vehiclejourneysdomain/265581f3-17e5-4d58-bba1-a97b00dfcf96",
 				"fileSystem": "partners"
 			}
 		},
@@ -78,10 +78,10 @@
 					"type": "string"
 				},
 				"AdvanceOrderCondition": {
-					"type": "string"
+					"type": "null"
 				},
 				"JourneyCreationParameters": {
-					"type": "string"
+					"type": "null"
 				},
 				"JourneyRef": {
 					"type": "object",
