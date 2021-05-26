@@ -20,6 +20,9 @@
 		"Hogia2_connectionString": {
 			"value": ""
 		},
+		"HogiaSource17DE_accountKey": {
+			"value": ""
+		},
 		"hankysynapsenewregion-WorkspaceDefaultSqlServer_connectionString": {
 			"value": ""
 		},
@@ -43,6 +46,9 @@
 		},
 		"HankyAzureMLService_properties_typeProperties_tenant": {
 			"value": "72f988bf-86f1-41af-91ab-2d7cd011db47"
+		},
+		"HogiaSource17DE_properties_typeProperties_url": {
+			"value": "https://hankyadlsv2.dfs.core.windows.net"
 		},
 		"hankysynapsenewregion-WorkspaceDefaultStorage_properties_typeProperties_url": {
 			"value": "https://hankysynapsenewregionadl.dfs.core.windows.net"
