@@ -83,6 +83,9 @@
 				"JourneyCreationParameters": {
 					"type": "string"
 				},
+				"OrganizationId": {
+					"type": "string"
+				},
 				"JourneyRef": {
 					"type": "object",
 					"properties": {
