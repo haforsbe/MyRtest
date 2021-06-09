@@ -78,10 +78,13 @@
 					"type": "string"
 				},
 				"AdvanceOrderCondition": {
-					"type": "null"
+					"type": "integer"
 				},
 				"JourneyCreationParameters": {
-					"type": "null"
+					"type": "integer"
+				},
+				"OrganizationId": {
+					"type": "string"
 				},
 				"JourneyRef": {
 					"type": "object",
