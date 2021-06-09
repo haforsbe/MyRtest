@@ -77,6 +77,15 @@
 	},
 	"resources": [
 		{
+			"name": "[concat(parameters('workspaceName'), '/hankysqlpool1')]",
+			"type": "Microsoft.Synapse/workspaces/sqlPools",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"annotations": []
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('workspaceName'), '/17de')]",
 			"type": "Microsoft.Synapse/workspaces/pipelines",
 			"apiVersion": "2019-06-01-preview",
@@ -3487,6 +3496,29 @@
 			"dependsOn": []
 		},
 		{
+			"name": "[concat(parameters('workspaceName'), '/JOIN_Openrowset_Copy1')]",
+			"type": "Microsoft.Synapse/workspaces/sqlscripts",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"folder": {
+					"name": "Hogia"
+				},
+				"content": {
+					"query": "WITH rides AS\n(\n    SELECT TOP 100 * \n    FROM OPENROWSET(\n        BULK 'https://hankyadlsv2.dfs.core.windows.net/partners/Hogia/PARQUET/monitoredvehiclejourneysdomain/MonitoredVehicleJourneys/part-00000-e8ed2dfb-c5e8-4226-8e23-adea29ef229d-c000.snappy.parquet',\n        FORMAT='PARQUET'\n    ) AS [MyRides]\n),\nMonitoredVehicleJourneys AS\n(\n    SELECT TOP 100 * \n    FROM OPENROWSET(\n        BULK 'https://hankyadlsv2.dfs.core.windows.net/partners/Hogia/PARQUET/vehiclejourneysdomain/265581f3-17e5-4d58-bba1-a97b00dfcf96/part-00000-f99164b1-96c2-46ce-afc3-17461858c76f-c000.snappy.parquet',\n        FORMAT='PARQUET'\n    ) AS [result]\n               \n)\nSELECT\n*\nFROM rides r\nJOIN MonitoredVehicleJourneys MVJ on r.objectref = MVJ.objectref and r.operatingdaydate = MVJ.operatingdaydate\n--ORDER BY current_day ASC",
+					"metadata": {
+						"language": "sql"
+					},
+					"currentConnection": {
+						"poolName": "Built-in",
+						"databaseName": "master"
+					},
+					"resultLimit": 5000
+				},
+				"type": "SqlQuery"
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('workspaceName'), '/SQL script 1')]",
 			"type": "Microsoft.Synapse/workspaces/sqlscripts",
 			"apiVersion": "2019-06-01-preview",
@@ -3500,6 +3532,46 @@
 						"name": "hankysqlpool1",
 						"type": "SqlPool"
 					}
+				},
+				"type": "SqlQuery"
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('workspaceName'), '/SQL script 11')]",
+			"type": "Microsoft.Synapse/workspaces/sqlscripts",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"content": {
+					"query": "SELECT\n    distinct objectref\nFROM\n    OPENROWSET(\n        BULK 'https://hankyadlsv2.dfs.core.windows.net/partners/Hogia/PARQUET/vehiclejourneysdomain/265581f3-17e5-4d58-bba1-a97b00dfcf96/part-00000-f99164b1-96c2-46ce-afc3-17461858c76f-c000.snappy.parquet',\n        FORMAT='PARQUET'\n    ) AS [result]\n",
+					"metadata": {
+						"language": "sql"
+					},
+					"currentConnection": {
+						"poolName": "Built-in",
+						"databaseName": "master"
+					},
+					"resultLimit": 5000
+				},
+				"type": "SqlQuery"
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('workspaceName'), '/SQL script 12')]",
+			"type": "Microsoft.Synapse/workspaces/sqlscripts",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"content": {
+					"query": "SELECT\n    distinct objectref\nFROM\n    OPENROWSET(\n        BULK 'https://hankyadlsv2.dfs.core.windows.net/partners/Hogia/PARQUET/monitoredvehiclejourneysdomain/MonitoredVehicleJourneys/part-00000-e8ed2dfb-c5e8-4226-8e23-adea29ef229d-c000.snappy.parquet',\n        FORMAT='PARQUET'\n    ) AS [result]\n",
+					"metadata": {
+						"language": "sql"
+					},
+					"currentConnection": {
+						"poolName": "Built-in",
+						"databaseName": "master"
+					},
+					"resultLimit": 5000
 				},
 				"type": "SqlQuery"
 			},
