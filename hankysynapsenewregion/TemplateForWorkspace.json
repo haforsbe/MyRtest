@@ -174,7 +174,8 @@
 				"annotations": []
 			},
 			"dependsOn": [
-				"[concat(variables('workspaceId'), '/dataflows/Dataflow1')]"
+				"[concat(variables('workspaceId'), '/dataflows/Dataflow1')]",
+				"[concat(variables('workspaceId'), '/integrationRuntimes/AutoResolveIntegrationRuntime')]"
 			]
 		},
 		{
@@ -2076,6 +2077,9 @@
 						"JourneyCreationParameters": {
 							"type": "string"
 						},
+						"OrganizationId": {
+							"type": "string"
+						},
 						"JourneyRef": {
 							"type": "object",
 							"properties": {
@@ -2270,10 +2274,13 @@
 							"type": "string"
 						},
 						"AdvanceOrderCondition": {
-							"type": "null"
+							"type": "integer"
 						},
 						"JourneyCreationParameters": {
-							"type": "null"
+							"type": "integer"
+						},
+						"OrganizationId": {
+							"type": "string"
 						},
 						"JourneyRef": {
 							"type": "object",
@@ -3334,7 +3341,7 @@
 						}
 					],
 					"transformations": [],
-					"script": "source(output(\n\t\tCalls as (SequenceNumber as string, JourneyPatternPointRef as string, IsTimingPoint as boolean, DepartureTimetabledEarliestDateTime as string, ArrivalTimetabledLatestDateTime as string)[],\n\t\tJourneyNumber as string,\n\t\tOriginName as string,\n\t\tPrimaryDestinationName as string,\n\t\tSecondaryDestinationName as string,\n\t\tSecondaryDestinationType as string,\n\t\tTransportMode as string,\n\t\tContractorOrganizationId as string,\n\t\tTimetabledStartDateTime as string,\n\t\tTimetabledEndDateTime as string,\n\t\tLineRef as string,\n\t\tDirectionOfLineRef as string,\n\t\tJourneyPatternRef as string,\n\t\tAdvanceOrderCondition as string,\n\t\tJourneyCreationParameters as string,\n\t\tJourneyRef as (ObjectRef as string, OperatingDayDate as string),\n\t\tTimeStamps as (TimeStamp as string, Name as string)[],\n\t\tpartitionKey as string,\n\t\tLastModifiedDateTime as string,\n\t\tttl as string,\n\t\tid as string,\n\t\tType as string,\n\t\t{_rid} as string,\n\t\t{_self} as string,\n\t\t{_etag} as string,\n\t\t{_attachments} as string,\n\t\t{_ts} as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false,\n\tdocumentForm: 'singleDocument') ~> source1\nsource1 sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tformat: 'parquet',\n\tmapColumn(\n\t\tCalls,\n\t\tJourneyNumber,\n\t\tOriginName,\n\t\tPrimaryDestinationName,\n\t\tSecondaryDestinationName,\n\t\tSecondaryDestinationType,\n\t\tTransportMode,\n\t\tContractorOrganizationId,\n\t\tTimetabledStartDateTime,\n\t\tTimetabledEndDateTime,\n\t\tLineRef,\n\t\tDirectionOfLineRef,\n\t\tJourneyPatternRef,\n\t\tAdvanceOrderCondition,\n\t\tJourneyCreationParameters,\n\t\tJourneyRef,\n\t\tTimeStamps,\n\t\tpartitionKey,\n\t\tLastModifiedDateTime,\n\t\tttl,\n\t\tid,\n\t\tType,\n\t\t{_rid},\n\t\t{_self},\n\t\t{_etag},\n\t\t{_attachments},\n\t\t{_ts},\n\t\tObjectRef = JourneyRef.ObjectRef,\n\t\tOperatingDayDate = JourneyRef.OperatingDayDate\n\t),\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> sink1"
+					"script": "source(output(\n\t\tCalls as (SequenceNumber as string, JourneyPatternPointRef as string, IsTimingPoint as boolean, DepartureTimetabledEarliestDateTime as string, ArrivalTimetabledLatestDateTime as string)[],\n\t\tJourneyNumber as string,\n\t\tOriginName as string,\n\t\tPrimaryDestinationName as string,\n\t\tSecondaryDestinationName as string,\n\t\tSecondaryDestinationType as string,\n\t\tTransportMode as string,\n\t\tContractorOrganizationId as string,\n\t\tTimetabledStartDateTime as string,\n\t\tTimetabledEndDateTime as string,\n\t\tLineRef as string,\n\t\tDirectionOfLineRef as string,\n\t\tJourneyPatternRef as string,\n\t\tAdvanceOrderCondition as string,\n\t\tJourneyCreationParameters as string,\n\t\tOrganizationId as string,\n\t\tJourneyRef as (ObjectRef as string, OperatingDayDate as string),\n\t\tTimeStamps as (TimeStamp as string, Name as string)[],\n\t\tpartitionKey as string,\n\t\tLastModifiedDateTime as string,\n\t\tttl as string,\n\t\tid as string,\n\t\tType as string,\n\t\t{_rid} as string,\n\t\t{_self} as string,\n\t\t{_etag} as string,\n\t\t{_attachments} as string,\n\t\t{_ts} as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false,\n\tdocumentForm: 'singleDocument') ~> source1\nsource1 sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tformat: 'parquet',\n\tmapColumn(\n\t\tCalls,\n\t\tJourneyNumber,\n\t\tOriginName,\n\t\tPrimaryDestinationName,\n\t\tSecondaryDestinationName,\n\t\tSecondaryDestinationType,\n\t\tTransportMode,\n\t\tContractorOrganizationId,\n\t\tTimetabledStartDateTime,\n\t\tTimetabledEndDateTime,\n\t\tLineRef,\n\t\tDirectionOfLineRef,\n\t\tJourneyPatternRef,\n\t\tAdvanceOrderCondition,\n\t\tJourneyCreationParameters,\n\t\tOrganizationId,\n\t\tJourneyRef,\n\t\tTimeStamps,\n\t\tpartitionKey,\n\t\tLastModifiedDateTime,\n\t\tttl,\n\t\tid,\n\t\tType,\n\t\t{_rid},\n\t\t{_self},\n\t\t{_etag},\n\t\t{_attachments},\n\t\t{_ts},\n\t\tObjectRef = JourneyRef.ObjectRef,\n\t\tOperatingDayDate = JourneyRef.OperatingDayDate\n\t),\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> sink1"
 				}
 			},
 			"dependsOn": [
@@ -3368,7 +3375,7 @@
 						}
 					],
 					"transformations": [],
-					"script": "source(output(\n\t\tCalls as (SequenceNumber as string, JourneyPatternPointRef as string, IsTimingPoint as boolean, DepartureTimetabledEarliestDateTime as string, ArrivalTimetabledLatestDateTime as string)[],\n\t\tJourneyNumber as string,\n\t\tOriginName as string,\n\t\tPrimaryDestinationName as string,\n\t\tSecondaryDestinationName as string,\n\t\tSecondaryDestinationType as string,\n\t\tTransportMode as string,\n\t\tContractorOrganizationId as string,\n\t\tTimetabledStartDateTime as string,\n\t\tTimetabledEndDateTime as string,\n\t\tLineRef as string,\n\t\tDirectionOfLineRef as string,\n\t\tJourneyPatternRef as string,\n\t\tAdvanceOrderCondition as string,\n\t\tJourneyCreationParameters as string,\n\t\tJourneyRef as (ObjectRef as string, OperatingDayDate as string),\n\t\tTimeStamps as (TimeStamp as string, Name as string)[],\n\t\tpartitionKey as string,\n\t\tLastModifiedDateTime as string,\n\t\tttl as string,\n\t\tid as string,\n\t\tType as string,\n\t\t{_rid} as string,\n\t\t{_self} as string,\n\t\t{_etag} as string,\n\t\t{_attachments} as string,\n\t\t{_ts} as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false,\n\tdocumentForm: 'singleDocument') ~> source1\nsource1 sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tformat: 'parquet',\n\tmapColumn(\n\t\tJourneyNumber,\n\t\tOriginName,\n\t\tPrimaryDestinationName,\n\t\tSecondaryDestinationName,\n\t\tSecondaryDestinationType,\n\t\tTransportMode,\n\t\tContractorOrganizationId,\n\t\tTimetabledStartDateTime,\n\t\tTimetabledEndDateTime,\n\t\tLineRef,\n\t\tDirectionOfLineRef,\n\t\tJourneyPatternRef,\n\t\tAdvanceOrderCondition,\n\t\tJourneyCreationParameters,\n\t\tJourneyRef,\n\t\tTimeStamps,\n\t\tpartitionKey,\n\t\tLastModifiedDateTime,\n\t\tttl,\n\t\tid,\n\t\tType,\n\t\t{_rid},\n\t\t{_self},\n\t\t{_etag},\n\t\t{_attachments},\n\t\t{_ts},\n\t\tObjectRef = JourneyRef.ObjectRef,\n\t\tOperatingDayDate = JourneyRef.OperatingDayDate\n\t),\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> sink1"
+					"script": "source(output(\n\t\tCalls as (SequenceNumber as string, JourneyPatternPointRef as string, IsTimingPoint as boolean, DepartureTimetabledEarliestDateTime as string, ArrivalTimetabledLatestDateTime as string)[],\n\t\tJourneyNumber as string,\n\t\tOriginName as string,\n\t\tPrimaryDestinationName as string,\n\t\tSecondaryDestinationName as string,\n\t\tSecondaryDestinationType as string,\n\t\tTransportMode as string,\n\t\tContractorOrganizationId as string,\n\t\tTimetabledStartDateTime as string,\n\t\tTimetabledEndDateTime as string,\n\t\tLineRef as string,\n\t\tDirectionOfLineRef as string,\n\t\tJourneyPatternRef as string,\n\t\tAdvanceOrderCondition as string,\n\t\tJourneyCreationParameters as string,\n\t\tOrganizationId as string,\n\t\tJourneyRef as (ObjectRef as string, OperatingDayDate as string),\n\t\tTimeStamps as (TimeStamp as string, Name as string)[],\n\t\tpartitionKey as string,\n\t\tLastModifiedDateTime as string,\n\t\tttl as string,\n\t\tid as string,\n\t\tType as string,\n\t\t{_rid} as string,\n\t\t{_self} as string,\n\t\t{_etag} as string,\n\t\t{_attachments} as string,\n\t\t{_ts} as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false,\n\tdocumentForm: 'singleDocument') ~> source1\nsource1 sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tformat: 'parquet',\n\tmapColumn(\n\t\tCalls,\n\t\tJourneyNumber,\n\t\tOriginName,\n\t\tPrimaryDestinationName,\n\t\tSecondaryDestinationName,\n\t\tSecondaryDestinationType,\n\t\tTransportMode,\n\t\tContractorOrganizationId,\n\t\tTimetabledStartDateTime,\n\t\tTimetabledEndDateTime,\n\t\tLineRef,\n\t\tDirectionOfLineRef,\n\t\tJourneyPatternRef,\n\t\tAdvanceOrderCondition,\n\t\tJourneyCreationParameters,\n\t\tOrganizationId,\n\t\tJourneyRef,\n\t\tTimeStamps,\n\t\tpartitionKey,\n\t\tLastModifiedDateTime,\n\t\tttl,\n\t\tid,\n\t\tType,\n\t\t{_rid},\n\t\t{_self},\n\t\t{_etag},\n\t\t{_attachments},\n\t\t{_ts}\n\t),\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> sink1"
 				}
 			},
 			"dependsOn": [
@@ -3504,7 +3511,7 @@
 					"name": "Hogia"
 				},
 				"content": {
-					"query": "WITH rides AS\n(\n    SELECT TOP 100 * \n    FROM OPENROWSET(\n        BULK 'https://hankyadlsv2.dfs.core.windows.net/partners/Hogia/PARQUET/monitoredvehiclejourneysdomain/MonitoredVehicleJourneys/part-00000-e8ed2dfb-c5e8-4226-8e23-adea29ef229d-c000.snappy.parquet',\n        FORMAT='PARQUET'\n    ) AS [MyRides]\n),\nMonitoredVehicleJourneys AS\n(\n    SELECT TOP 100 * \n    FROM OPENROWSET(\n        BULK 'https://hankyadlsv2.dfs.core.windows.net/partners/Hogia/PARQUET/vehiclejourneysdomain/265581f3-17e5-4d58-bba1-a97b00dfcf96/part-00000-f99164b1-96c2-46ce-afc3-17461858c76f-c000.snappy.parquet',\n        FORMAT='PARQUET'\n    ) AS [result]\n               \n)\nSELECT\n*\nFROM rides r\nJOIN MonitoredVehicleJourneys MVJ on r.objectref = MVJ.objectref and r.operatingdaydate = MVJ.operatingdaydate\n--ORDER BY current_day ASC",
+					"query": "WITH rides AS\n(\n    SELECT TOP 100 * \n    FROM\n    OPENROWSET(\n        BULK 'https://hankyadlsv2.dfs.core.windows.net/partners/Hogia/PARQUET/vehiclejourneysdomain/*/*.snappy.parquet',\n        FORMAT='PARQUET'\n    ) AS [MyRides]\n),\nMonitoredVehicleJourneys AS\n(\n    SELECT TOP 100 * \n    FROM OPENROWSET(\n        BULK 'https://hankyadlsv2.dfs.core.windows.net/partners/Hogia/PARQUET/monitoredvehiclejourneysdomain/MonitoredVehicleJourneys/part-00000-e8ed2dfb-c5e8-4226-8e23-adea29ef229d-c000.snappy.parquet',\n        FORMAT='PARQUET'\n    ) AS [result]\n               \n)\nSELECT\n*\nFROM rides r\nLEFT JOIN MonitoredVehicleJourneys MVJ on r.objectref = MVJ.objectref AND \n            r.operatingdaydate = MVJ.operatingdaydate AND\n            r.OrganizationId = MVJ.OrganizationId\n\n\n\n--ORDER BY current_day ASC",
 					"metadata": {
 						"language": "sql"
 					},
@@ -3564,6 +3571,26 @@
 			"properties": {
 				"content": {
 					"query": "SELECT\n    distinct objectref\nFROM\n    OPENROWSET(\n        BULK 'https://hankyadlsv2.dfs.core.windows.net/partners/Hogia/PARQUET/monitoredvehiclejourneysdomain/MonitoredVehicleJourneys/part-00000-e8ed2dfb-c5e8-4226-8e23-adea29ef229d-c000.snappy.parquet',\n        FORMAT='PARQUET'\n    ) AS [result]\n",
+					"metadata": {
+						"language": "sql"
+					},
+					"currentConnection": {
+						"poolName": "Built-in",
+						"databaseName": "master"
+					},
+					"resultLimit": 5000
+				},
+				"type": "SqlQuery"
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('workspaceName'), '/SQL script 13')]",
+			"type": "Microsoft.Synapse/workspaces/sqlscripts",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"content": {
+					"query": "SELECT\n    TOP 100 *\nFROM\n    OPENROWSET(\n        BULK 'https://hankyadlsv2.dfs.core.windows.net/partners/Hogia/PARQUET/vehiclejourneysdomain/265581f3-17e5-4d58-bba1-a97b00dfcf96/part-00000-ff789388-d290-47a9-8f80-b3522ee89da1-c000.snappy.parquet',\n        FORMAT='PARQUET'\n    ) AS [result]\n",
 					"metadata": {
 						"language": "sql"
 					},
