@@ -1,0 +1,17 @@
+{
+	"name": "SQL script 12",
+	"properties": {
+		"content": {
+			"query": "SELECT\n    distinct objectref\nFROM\n    OPENROWSET(\n        BULK 'https://hankyadlsv2.dfs.core.windows.net/partners/Hogia/PARQUET/monitoredvehiclejourneysdomain/MonitoredVehicleJourneys/part-00000-e8ed2dfb-c5e8-4226-8e23-adea29ef229d-c000.snappy.parquet',\n        FORMAT='PARQUET'\n    ) AS [result]\n",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"poolName": "Built-in",
+				"databaseName": "master"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}
