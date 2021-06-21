@@ -5,7 +5,7 @@
 			"name": "Hogia"
 		},
 		"content": {
-			"query": "WITH rides AS\n(\n    SELECT TOP 100 * \n    FROM\n    OPENROWSET(\n        BULK 'https://hankyadlsv2.dfs.core.windows.net/partners/Hogia/PARQUET/vehiclejourneysdomain/*/*.snappy.parquet',\n        FORMAT='PARQUET'\n    ) AS [MyRides]\n),\nMonitoredVehicleJourneys AS\n(\n    SELECT TOP 100 * \n    FROM OPENROWSET(\n        BULK 'https://hankyadlsv2.dfs.core.windows.net/partners/Hogia/PARQUET/monitoredvehiclejourneysdomain/MonitoredVehicleJourneys/part-00000-e8ed2dfb-c5e8-4226-8e23-adea29ef229d-c000.snappy.parquet',\n        FORMAT='PARQUET'\n    ) AS [result]\n               \n)\nSELECT\n*\nFROM rides r\nLEFT JOIN MonitoredVehicleJourneys MVJ on r.objectref = MVJ.objectref AND \n            r.operatingdaydate = MVJ.operatingdaydate AND\n            r.OrganizationId = MVJ.OrganizationId\n\n\n\n--ORDER BY current_day ASC",
+			"query": "WITH rides AS\n(\n    SELECT * \n    FROM\n    OPENROWSET(\n        BULK 'https://hankyadlsv2.dfs.core.windows.net/partners/Hogia/PARQUET/vehiclejourneysdomain/*/*.snappy.parquet',\n        FORMAT='PARQUET'\n    ) AS [MyRides]\n),\nMonitoredVehicleJourneys AS\n(\n    SELECT * \n    FROM OPENROWSET(\n        BULK 'https://hankyadlsv2.dfs.core.windows.net/partners/Hogia/PARQUET/monitoredvehiclejourneysdomain/MonitoredVehicleJourneys/part-00000-e8ed2dfb-c5e8-4226-8e23-adea29ef229d-c000.snappy.parquet',\n        FORMAT='PARQUET'\n    ) AS [result]\n               \n)\nSELECT\n*\nFROM rides r\nLEFT JOIN MonitoredVehicleJourneys MVJ on r.objectref = MVJ.objectref AND \n            r.operatingdaydate = MVJ.operatingdaydate AND\n            r.OrganizationId = MVJ.OrganizationId\n\n\n\n--ORDER BY current_day ASC",
 			"metadata": {
 				"language": "sql"
 			},
