@@ -3678,6 +3678,29 @@
 			"dependsOn": []
 		},
 		{
+			"name": "[concat(parameters('workspaceName'), '/SQL script 17')]",
+			"type": "Microsoft.Synapse/workspaces/sqlscripts",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"folder": {
+					"name": "Hogia"
+				},
+				"content": {
+					"query": "SELECT\n*\nFROM vjd\nLEFT JOIN mvjd on vjd.objectref = mvjd.objectref AND \n            vjd.operatingdaydate = mvjd.operatingdaydate AND\n            vjd.OrganizationId = mvjd.OrganizationId\n\n\n\n--ORDER BY current_day ASC",
+					"metadata": {
+						"language": "sql"
+					},
+					"currentConnection": {
+						"poolName": "Built-in",
+						"databaseName": "Hogia"
+					},
+					"resultLimit": 5000
+				},
+				"type": "SqlQuery"
+			},
+			"dependsOn": []
+		},
+		{
 			"name": "[concat(parameters('workspaceName'), '/SQL script 4')]",
 			"type": "Microsoft.Synapse/workspaces/sqlscripts",
 			"apiVersion": "2019-06-01-preview",
